@@ -8,14 +8,15 @@ set client_encoding = 'utf-8';
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
 CREATE TABLE usuario (
-	id_usuario serial primary key, -- Cambio el tipo por uno serial, el tipo se encarga de generar la secuencia de forma automática
-	correo text NOT NULL CHECK(correo SIMILAR TO '[0-9A-Za-z -_.áéíóúñü]+@%.%'),
-	nombre_usuario text NOT NULL CHECK(nombre_usuario SIMILAR TO '[A-Za-z]+'),
+	id_usuario serial PRIMARY KEY, -- Cambio el tipo por uno serial, el tipo se encarga de generar la secuencia de forma automática
+	correo text UNIQUE NOT NULL check(correo SIMILAR TO '[0-9A-Za-z -_.áéíóúñü]+@%.%'),
+	nombre_usuario text NOT NULL check(nombre_usuario SIMILAR TO '[A-Za-z]+'),
 	app text NOT NULL CHECK(app SIMILAR TO '[A-Za-záéíóúñü]+'),
 	apm text NOT NULL CHECK(apm SIMILAR TO '[A-Za-záéíóúñü]+'),
 	contrasenia varchar(15) NOT NULL,
-	telefono bigint NOT NULL CHECK(telefono <= 9999999999),
-	acerca_de varchar(255) NOT NULL
+	telefono bigint CHECK(telefono <= 9999999999),
+	acerca_de varchar(255),
+	calificacion integer
 );
 
 comment on table usuario
@@ -26,8 +27,8 @@ CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como información
 adicional ACERCA_DE_USUARIO.';
 
 CREATE TABLE alumno (
-	id_usuario integer primary key references usuario(id_usuario),
-	fec_nac date CHECK ( date_part('year',age(fec_nac)) >= 15 )
+	id_usuario integer PRIMARY KEY REFERENCES usuario(id_usuario),
+	fec_nac date NOT NULL CHECK( date_part('year',age(fec_nac)) >= 15 )
 );
 
 comment on table alumno
@@ -38,18 +39,18 @@ FECHA_NACIMIENTO_ALUMNO.';
 --Con respecto al problema de los tutores, bastaba con quitarle
 --la nularidad a la columna nivel_estudios_tutor
 CREATE TABLE tutor (
-	id_usuario integer primary key references usuario(id_usuario),
-	nivel_estudio text not null
+	id_usuario integer PRIMARY KEY REFERENCES usuario(id_usuario),
+	nivel_estudio text 
 );
 
 comment on table tutor
 is
-'El usuario ID_USUARIO es un tutor con nivel de estudios NIVEL_ESTUDIOS_TUTOR.';
+'El usuario ID_USUARIO es un tutor con nivel de estudios NIVEL_ESTUDIOS.';
 
 CREATE TABLE materia (
-	id_materia serial primary key,
-	nombre_materia text not null,
-	area_materia integer check(area_materia >= 1 and area_materia <= 4)
+	id_materia serial PRIMARY KEY,
+	nombre_materia text NOT NULL,
+	area_materia integer NOT NULL CHECK(area_materia >= 1 and area_materia <= 4)
 );
 
 comment on table materia
@@ -58,8 +59,8 @@ is
 AREA_MATERIA';
 
 CREATE TABLE tutor_materia (
-	id_usuario integer not null references tutor(id_usuario),
-	id_materia integer not null references materia(id_materia)
+	id_usuario integer NOT NULL REFERENCES tutor(id_usuario),
+	id_materia integer NOT NULL REFERENCES materia(id_materia)
 );
 
 comment on table tutor_materia
@@ -67,19 +68,19 @@ is
 'El tutor ID_USUARIO imparte la materia ID_MATERIA';
 
 CREATE TABLE asesoria(
-	id_asesoria serial primary key,
-	costo integer not null,
-	fec_asesoria date not null,
-	direccion varchar not null
+	id_asesoria serial PRIMARY KEY,
+	costo integer NOT NULL,
+	fec_asesoria date NOT NULL,
+	direccion varchar NOT NULL,
+	calificacion integer
 );
 
 CREATE TABLE solicitud(
-	id_solicitud serial primary key,
-	estado boolean not null,
-	calificacion integer,
-	id_alumno integer not null references alumno(id_usuario),
-	id_tutor integer not null references tutor(id_usuario),
-	id_asesoria integer not null references asesoria(id_asesoria)
+	id_solicitud serial PRIMARY KEY,
+	estado boolean NOT NULL,
+	id_alumno integer NOT NULL REFERENCES alumno(id_usuario),
+	id_tutor integer NOT NULL REFERENCES tutor(id_usuario),
+	id_asesoria integer NOT NULL REFERENCES asesoria(id_asesoria)
 );
 
 --Función que regresa todos los tutores dado un nombre de una materia.
