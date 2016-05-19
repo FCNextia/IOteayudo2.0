@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/05/2016 12:04:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Materia" table="materia" schema="public" optimistic-lock="version">
+        <comment>La materia ID_MATERIA con nombre NOMBRE_MATERIA se encuentra en el &#195;&#161;rea AREA_MATERIA</comment>
+        <id name="idMateria" type="int">
+            <column name="id_materia" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreMateria" type="string">
+            <column name="nombre_materia" not-null="true" />
+        </property>
+        <property name="areaMateria" type="int">
+            <column name="area_materia" not-null="true" />
+        </property>
+        <set name="tutorMaterias" table="tutor_materia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_materia" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TutorMateria" />
+        </set>
+        <set name="solicituds" table="solicitud" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_materia" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Solicitud" />
+        </set>
+    </class>
+</hibernate-mapping>

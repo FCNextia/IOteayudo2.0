@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/05/2016 12:04:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Asesoria" table="asesoria" schema="public" optimistic-lock="version">
+        <id name="idAsesoria" type="int">
+            <column name="id_asesoria" />
+            <generator class="assigned" />
+        </id>
+        <property name="costo" type="int">
+            <column name="costo" not-null="true" />
+        </property>
+        <property name="fecAsesoria" type="date">
+            <column name="fec_asesoria" length="13" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" not-null="true" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" />
+        </property>
+        <property name="calificacionAlumno" type="java.lang.Integer">
+            <column name="calificacion_alumno" />
+        </property>
+        <property name="calificacionTutor" type="java.lang.Integer">
+            <column name="calificacion_tutor" />
+        </property>
+        <set name="solicituds" table="solicitud" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_asesoria" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Solicitud" />
+        </set>
+    </class>
+</hibernate-mapping>

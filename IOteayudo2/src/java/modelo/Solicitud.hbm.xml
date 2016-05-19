@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/05/2016 12:04:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Solicitud" table="solicitud" schema="public" optimistic-lock="version">
+        <id name="idSolicitud" type="int">
+            <column name="id_solicitud" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="alumno" class="modelo.Alumno" fetch="select">
+            <column name="id_alumno" not-null="true" />
+        </many-to-one>
+        <many-to-one name="asesoria" class="modelo.Asesoria" fetch="select">
+            <column name="id_asesoria" not-null="true" />
+        </many-to-one>
+        <many-to-one name="materia" class="modelo.Materia" fetch="select">
+            <column name="id_materia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tutor" class="modelo.Tutor" fetch="select">
+            <column name="id_tutor" not-null="true" />
+        </many-to-one>
+        <property name="estado" type="char">
+            <column name="estado" length="1" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

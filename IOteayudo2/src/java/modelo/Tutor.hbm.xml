@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/05/2016 12:04:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Tutor" table="tutor" schema="public" optimistic-lock="version">
+        <comment>El usuario ID_USUARIO es un tutor con nivel de estudios NIVEL_ESTUDIOS.</comment>
+        <id name="idUsuario" type="int">
+            <column name="id_usuario" />
+            <generator class="foreign">
+                <param name="property">usuario</param>
+            </generator>
+        </id>
+        <one-to-one name="usuario" class="modelo.Usuario" constrained="true"></one-to-one>
+        <property name="nivelEstudio" type="string">
+            <column name="nivel_estudio" />
+        </property>
+        <set name="solicituds" table="solicitud" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tutor" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Solicitud" />
+        </set>
+        <set name="tutorMaterias" table="tutor_materia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_usuario" not-null="true" />
+            </key>
+            <one-to-many class="modelo.TutorMateria" />
+        </set>
+    </class>
+</hibernate-mapping>

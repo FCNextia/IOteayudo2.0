@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/05/2016 12:04:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuario" table="usuario" schema="public" optimistic-lock="version">
+        <comment>El usuario con nombre NOMBRE_USUARIO, apellido paterno APELLIDO_PATERNO_USUARIO, apellido materno APELLIDO MATERNO tiene una contrase&#195;&#177;a
+        CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como informaci&#195;&#179;n adicional ACERCA_DE_USUARIO.</comment>
+        <id name="idUsuario" type="int">
+            <column name="id_usuario" />
+            <generator class="assigned" />
+        </id>
+        <property name="correo" type="string">
+            <column name="correo" not-null="true" unique="true" />
+        </property>
+        <property name="nombreUsuario" type="string">
+            <column name="nombre_usuario" not-null="true" />
+        </property>
+        <property name="app" type="string">
+            <column name="app" not-null="true" />
+        </property>
+        <property name="apm" type="string">
+            <column name="apm" not-null="true" />
+        </property>
+        <property name="contrasenia" type="string">
+            <column name="contrasenia" length="15" not-null="true" />
+        </property>
+        <property name="telefono" type="java.lang.Long">
+            <column name="telefono" />
+        </property>
+        <property name="acercaDe" type="string">
+            <column name="acerca_de" />
+        </property>
+        <property name="calificacion" type="java.lang.Integer">
+            <column name="calificacion" />
+        </property>
+        <one-to-one name="alumno" class="modelo.Alumno"></one-to-one>
+        <one-to-one name="tutor" class="modelo.Tutor"></one-to-one>
+    </class>
+</hibernate-mapping>
