@@ -22,4 +22,8 @@
             <one-to-many class="modelo.Solicitud" />
         </set>
     </class>
+    <sql-query name="BuscaAlumnoPorID">
+	<return alias="Alumno" class="modelo.Alumno"/>
+	<![CDATA[select * from public.alumno where id_usuario = :idUsuario]]>
+    </sql-query>
 </hibernate-mapping>

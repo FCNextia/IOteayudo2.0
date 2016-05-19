@@ -39,7 +39,7 @@ public class IniciarSesion {
     public String iniciarSesion() {
         modelo.Usuario usuario = helper.getLoginPorCorreo(getCorreo());
         if (usuario != null) {
-            if (getContrasenia().equals(usuario.getContraseniaUsuario())) {
+            if (getContrasenia().equals(usuario.getContrasenia())) {
                 httpServletRequest.getSession().setAttribute("sessionUsuario", correo);
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
                 faceContext.addMessage(null, message);

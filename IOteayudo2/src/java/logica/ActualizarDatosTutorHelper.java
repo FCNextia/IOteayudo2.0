@@ -29,18 +29,18 @@ public class ActualizarDatosTutorHelper {
      * @param contrasenia
      */
     public int actualizaDatos(String correo, String contrasenia, String nombre, 
-            String ap, String am, int cel, String ad) {
+            String ap, String am, long cel, String ad) {
         try {
             session.beginTransaction();
             Query p = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", correo);
             Usuario u = (Usuario)p.uniqueResult();
-            u.setCorreoUsuario(correo);
-            u.setContraseniaUsuario(contrasenia);
+            u.setCorreo(correo);
+            u.setContrasenia(contrasenia);
             u.setNombreUsuario(nombre);
-            u.setApellidoPaternoUsuario(ap);
-            u.setApellidoMaternoUsuario(am);
-            u.setTelefonoUsuario(cel);
-            u.setAcercaDeUsuario(ad);
+            u.setApp(ap);
+            u.setApm(am);
+            u.setTelefono(cel);
+            u.setAcercaDe(ad);
             session.persist(u);
             session.getTransaction().commit();
             return u.getIdUsuario();
@@ -55,7 +55,7 @@ public class ActualizarDatosTutorHelper {
         session.beginTransaction();
         Query p = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", id);
         Tutor t = (Tutor)p.uniqueResult();
-        t.setNivelEstudiosTutor(nivel_estudios);
+        t.setNivelEstudio(nivel_estudios);
         session.persist(t);
         session.getTransaction().commit();
     }

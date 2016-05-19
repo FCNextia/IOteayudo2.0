@@ -28,4 +28,8 @@
             <one-to-many class="modelo.TutorMateria" />
         </set>
     </class>
+    <sql-query name="BuscaTutorPorID">
+	<return alias="Tutor" class="modelo.Tutor"/>
+	<![CDATA[select * from public.tutor where id_usuario = :idUsuario]]>
+    </sql-query>
 </hibernate-mapping>

@@ -35,19 +35,19 @@ public class ActualizarDatosAlumnoHelper {
      * @param ad
      */
     public int actualizaDatos(String correo, String contrasenia, String nombre, 
-            String ap, String am, int cel, String ad) {
+            String ap, String am, long cel, String ad) {
         try {
             //Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             Query p = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", correo);
             Usuario u = (Usuario)p.uniqueResult();
-            u.setCorreoUsuario(correo);
-            u.setContraseniaUsuario(contrasenia);
+            u.setCorreo(correo);
+            u.setContrasenia(contrasenia);
             u.setNombreUsuario(nombre);
-            u.setApellidoPaternoUsuario(ap);
-            u.setApellidoMaternoUsuario(am);
-            u.setTelefonoUsuario(cel);
-            u.setAcercaDeUsuario(ad);
+            u.setApp(ap);
+            u.setApm(am);
+            u.setTelefono(cel);
+            u.setAcercaDe(ad);
             session.persist(u);
             session.getTransaction().commit();
             return u.getIdUsuario();
@@ -62,7 +62,7 @@ public class ActualizarDatosAlumnoHelper {
         session.beginTransaction();
         Query p = session.getNamedQuery("BuscaAlumnoPorID").setInteger("idUsuario", id);
         Alumno a = (Alumno)p.uniqueResult();
-        a.setFechaNacimientoAlumno(fecha);
+        a.setFecNac(fecha);
         session.persist(a);
         session.getTransaction().commit();
     }

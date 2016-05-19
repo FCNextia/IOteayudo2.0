@@ -25,17 +25,16 @@ public class RegistroHelper {
        session.beginTransaction();
        Usuario usuario = new Usuario();
        usuario.setIdUsuario(id);
-       usuario.setCorreoUsuario(correo);
+       usuario.setCorreo(correo);
        usuario.setNombreUsuario(nombre);
-       usuario.setApellidoPaternoUsuario(apellidoPa);
-       usuario.setApellidoMaternoUsuario(apellidoMa);
-       usuario.setContraseniaUsuario(contrasenia);
-       usuario.setTelefonoUsuario(0);
-       usuario.setAcercaDeUsuario("vacio");
+       usuario.setApp(apellidoPa);
+       usuario.setApm(apellidoMa);
+       usuario.setContrasenia(contrasenia);
+       usuario.setTelefono(new Long(0));
+       usuario.setAcercaDe("vacio");
        session.persist(usuario);
        usuario.setIdUsuario(id);
-       Alumno a = new Alumno(usuario);
-       a.setFechaNacimientoAlumno(new Date(93,10,27));
+       Alumno a = new Alumno(usuario, new Date(93,10,27));
        session.persist(a);
        session.getTransaction().commit();
        
@@ -46,16 +45,16 @@ public class RegistroHelper {
        session.beginTransaction();
        Usuario usuario = new Usuario();
        usuario.setIdUsuario(id);
-       usuario.setCorreoUsuario(correo);
+       usuario.setCorreo(correo);
        usuario.setNombreUsuario(nombre);
-       usuario.setApellidoPaternoUsuario(apellidoPa);
-       usuario.setApellidoMaternoUsuario(apellidoMa);
-       usuario.setContraseniaUsuario(contrasenia);
-       usuario.setTelefonoUsuario(0);
-       usuario.setAcercaDeUsuario("vacio");
+       usuario.setApp(apellidoPa);
+       usuario.setApm(apellidoMa);
+       usuario.setContrasenia(contrasenia);
+       usuario.setTelefono(new Long(0));
+       usuario.setAcercaDe("vacio");
        session.persist(usuario);
        usuario.setIdUsuario(id);
-       Tutor t = new Tutor(usuario, "vacio");
+       Tutor t = new Tutor(usuario);
        session.persist(t);
        session.getTransaction().commit();     
     }
