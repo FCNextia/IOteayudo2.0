@@ -72,12 +72,16 @@ CREATE TABLE asesoria(
 	costo integer NOT NULL,
 	fec_asesoria date NOT NULL,
 	direccion varchar NOT NULL,
-	calificacion integer
+
+	comentario varchar,
+	calificacion_alumno integer,
+	calificacion_tutor integer
 );
 
 CREATE TABLE solicitud(
 	id_solicitud serial PRIMARY KEY,
-	estado boolean NOT NULL,
+	id_materia integer NOT NULL REFERENCES materia(id_materia),
+	estado char NOT NULL,
 	id_alumno integer NOT NULL REFERENCES alumno(id_usuario),
 	id_tutor integer NOT NULL REFERENCES tutor(id_usuario),
 	id_asesoria integer NOT NULL REFERENCES asesoria(id_asesoria)
