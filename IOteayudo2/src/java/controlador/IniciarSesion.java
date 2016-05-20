@@ -5,46 +5,54 @@
  */
 package controlador;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import logica.IniciarSesionHelper;
+import javax.servlet.http.HttpSession;
 
+import logica.IniciarSesionHelper;
+import modelo.Usuario;
 
 /**
  *
  * @author yosh
  */
 @ManagedBean
-@RequestScoped 
+@RequestScoped
 public class IniciarSesion {
-    private String correo;
-    private String contrasenia;
-    private final HttpServletRequest httpServletRequest; // Obtiene información de todas las peticiones de usuario.
+
+    private final IniciarSesionHelper helper;
+    private final HttpSession session;
     private final FacesContext faceContext; // Obtiene información de la aplicación
     private FacesMessage message; // Permite el envio de mensajes entre el bean y la vista
-    private IniciarSesionHelper helper;
+    private String correo;
+    private String contrasenia;
 
-    public IniciarSesion() {faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+    public IniciarSesion() {
+        faceContext = FacesContext.getCurrentInstance();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
+        session = httpServletRequest.getSession(true);
         helper = new IniciarSesionHelper();
     }
 
     public String iniciarSesion() {
-        modelo.Usuario usuario = helper.getLoginPorCorreo(getCorreo());
+        Usuario usuario = helper.getLoginPorCorreo(getCorreo());
         if (usuario != null) {
+            // TODO(MAPA): Hay que garantizar una mejor forma de validar las contraseñas
             if (getContrasenia().equals(usuario.getContrasenia())) {
-                httpServletRequest.getSession().setAttribute("sessionUsuario", correo);
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
-                faceContext.addMessage(null, message);
-
-                return "perfilalumno";
+                session.setAttribute("sessionUsuario", correo);
+                if (usuario.getAlumno() != null) {
+                    return "perfilalumno";
+                }
+                if (usuario.getTutor() != null) {
+                    return "perfiltutor";
+                } else {
+                    // Esto está raro, ¿hay algún caso donde no sea ni tutor ni alumno?
+                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no encontrado.", null);
+                    faceContext.addMessage(null, message);
+                }
             } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
                 faceContext.addMessage(null, message);
@@ -53,7 +61,7 @@ public class IniciarSesion {
         }
         return "iniciosesion";
     }
-    
+
     public String getCorreo() {
         return correo;
     }
@@ -68,5 +76,5 @@ public class IniciarSesion {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
-    }   
+    }
 }

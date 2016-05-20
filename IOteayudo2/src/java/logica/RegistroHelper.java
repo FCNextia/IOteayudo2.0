@@ -1,11 +1,13 @@
 package logica;
 
 import java.util.Date;
-import modelo.Alumno;
-import modelo.Tutor;
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.TransactionException;
+
+import modelo.Alumno;
+import modelo.Tutor;
 import modelo.Usuario;
 
 /**
@@ -14,48 +16,45 @@ import modelo.Usuario;
  */
 public class RegistroHelper {
 
-    private Session session;
+    private final Session session;
 
     public RegistroHelper() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
-    public void registraUsuarioAlumno(int id, String correo, String nombre, String apellidoPa, String apellidoMa, String contrasenia){
-       Session session = HibernateUtil.getSessionFactory().openSession();
-       session.beginTransaction();
-       Usuario usuario = new Usuario();
-       usuario.setIdUsuario(id);
-       usuario.setCorreo(correo);
-       usuario.setNombreUsuario(nombre);
-       usuario.setApp(apellidoPa);
-       usuario.setApm(apellidoMa);
-       usuario.setContrasenia(contrasenia);
-       usuario.setTelefono(new Long(0));
-       usuario.setAcercaDe("vacio");
-       session.persist(usuario);
-       usuario.setIdUsuario(id);
-       Alumno a = new Alumno(usuario, new Date(93,10,27));
-       session.persist(a);
-       session.getTransaction().commit();
-       
+    /**
+     * Método encargado de registrar un usuario como alumno. La fecha
+     * de nacimiento del alumno queda por default como la fecha
+     * generada por new Date() (i.e. 01-01-1969).
+     *
+     * @param usuario El usuario a registrar.
+     *
+     * @throws TransactionException Se lanza la excepción en caso de
+     * un error durante la transacción.
+     */
+    public void registraUsuarioAlumno(Usuario usuario) throws TransactionException {
+        Transaction tx = session.beginTransaction();
+        Alumno alumno = new Alumno(usuario, new Date());
+        alumno.setFecNac(new Date());
+        session.persist(usuario);
+        session.persist(alumno);
+        tx.commit();
     }
-    
-    public void registraUsuarioTutor(int id, String correo, String nombre, String apellidoPa, String apellidoMa, String contrasenia){
-       Session session = HibernateUtil.getSessionFactory().openSession();
-       session.beginTransaction();
-       Usuario usuario = new Usuario();
-       usuario.setIdUsuario(id);
-       usuario.setCorreo(correo);
-       usuario.setNombreUsuario(nombre);
-       usuario.setApp(apellidoPa);
-       usuario.setApm(apellidoMa);
-       usuario.setContrasenia(contrasenia);
-       usuario.setTelefono(new Long(0));
-       usuario.setAcercaDe("vacio");
-       session.persist(usuario);
-       usuario.setIdUsuario(id);
-       Tutor t = new Tutor(usuario);
-       session.persist(t);
-       session.getTransaction().commit();     
+
+    /**
+     * Método encargado de registrar un usuario como tutor.
+     *
+     * @param usuario El usuario a registrar.
+     *
+     * @throws TransactionException Lanza la excepción en caso de un
+     * error durante la transacción.
+     */
+    public void registraUsuarioTutor(Usuario usuario) throws TransactionException {
+        Transaction tx = session.beginTransaction();
+        Tutor tutor = new Tutor(usuario);
+        session.persist(usuario);
+        session.persist(tutor);
+        tx.commit();
     }
+
 }

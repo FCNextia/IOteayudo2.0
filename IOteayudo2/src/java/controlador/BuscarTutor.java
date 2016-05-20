@@ -6,8 +6,10 @@
 package controlador;
 
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.ApplicationScoped;
+
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+
 import logica.BuscarTutorHelper;
 import modelo.Usuario;
 
@@ -15,12 +17,21 @@ import modelo.Usuario;
  *
  * @author rtaboada
  */
-@Named(value = "buscarTutor")
+@ManagedBean
 @ApplicationScoped
 public class BuscarTutor {
     private List<Usuario> tutores; //Lista en donde guardaremos los tutores de la busqueda
     private Usuario tutor; //Lista donde guardaremos el tutor a buscar
     private String materia; //La materia por la cual buscaremos un tutor
+    private boolean flag = true;
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     public String getMateria() {
         return materia;
@@ -34,12 +45,23 @@ public class BuscarTutor {
         encontrarTutor();
         return tutores.get(0).getNombreUsuario();
     }
-    
+
     public void encontrarTutor(){
         BuscarTutorHelper helper = new BuscarTutorHelper();
-        setTutores(helper.verificaTutor(materia));
+        //Como este metodo se invoca despues de haberle asignado la materia
+        //al bean. Se supone que el String materia no es nulo.
+        //Aun asi, se preguntara por si un usuario invoca primero este metodo
+        if(materia != null){
+            String nueva = helper.verificaMateria(this.materia);
+            //Si temp == nueva significa que no debemos mostrar un mensaje
+            //de "quiza quisiste decir"
+            //Asignamos la variable nueva a materia, ya que esta
+            //esta correcta. Temp puede o no estar mal escrita.
+            setMateria(nueva);
+            setTutores(helper.verificaTutor(materia));
+        }
     }
-    
+
     public Usuario getTutor() {
         return tutor;
     }
@@ -47,7 +69,7 @@ public class BuscarTutor {
     public void setTutor(Usuario tutor) {
         this.tutor = tutor;
     }
-    
+
     public List<Usuario> getTutores() {
         return tutores;
     }
@@ -55,12 +77,12 @@ public class BuscarTutor {
     public void setTutores(List<Usuario> tutores) {
         this.tutores = tutores;
     }
-    
+
     /**
      * Metodo contructor de la clase
      */
     public BuscarTutor() {
         System.out.println("Iniciando Buscar Tutor");
     }
-    
+
 }

@@ -1,13 +1,11 @@
 package controlador;
 
-import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import logica.ActualizarDatosTutorHelper;
-import modelo.Usuario;
 
 /**
  * Controlador que permite agregar un usuario a la base de datos.
@@ -48,6 +46,7 @@ public class ActualizarDatosTutor {
     private final FacesContext faceContext;
     /* Permite el envio de mensajes entre el bean y la vista. */
     private FacesMessage message;
+    /* Se encarga de actualizar los datos. */
     private ActualizarDatosTutorHelper adth;
     
     /**
@@ -66,10 +65,16 @@ public class ActualizarDatosTutor {
      * @return Dirección de la vista perfil.
      */
     public String actualizarDatos() {
-        int cel = Integer.parseInt(getCelular());
-        int id = adth.actualizaDatos(getCorreo(), getContrasenia(), getNombre(), 
+        /* Convertirmos el teléfono a número. */
+        long cel = Long.parseLong(getCelular());
+        /* Obtenemos la sesión actual. */
+        CerrarSesion cs = new CerrarSesion();
+        String mail = cs.getCorreo();
+        /* Actualizamos los datos. */
+        int id = adth.actualizaDatos(mail, getContrasenia(), getNombre(), 
                 getApellidop(),getApellidom(), cel, getAcercaDeMi());
         adth.actualizaDatosTutor(id, getEscolaridad());
+        /* Redirigimos al perfil del tutor. */
         return "perfiltutor";
     }
     
