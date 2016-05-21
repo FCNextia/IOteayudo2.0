@@ -34,8 +34,9 @@ public class RegistroHelper {
      */
     public void registraUsuarioAlumno(Usuario usuario) throws TransactionException {
         Transaction tx = session.beginTransaction();
-        Alumno alumno = new Alumno(usuario, new Date());
-        alumno.setFecNac(new Date());
+        
+        Alumno alumno = new Alumno(usuario, new Date(94,10,10));
+        //alumno.setFecNac(new Date());
         session.persist(usuario);
         session.persist(alumno);
         tx.commit();
@@ -50,7 +51,8 @@ public class RegistroHelper {
      * error durante la transacción.
      */
     public void registraUsuarioTutor(Usuario usuario) throws TransactionException {
-        Transaction tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();      
+       
         Tutor tutor = new Tutor(usuario);
         session.persist(usuario);
         session.persist(tutor);
