@@ -43,6 +43,7 @@ public class IniciarSesion {
             // TODO(MAPA): Hay que garantizar una mejor forma de validar las contraseñas
             if (getContrasenia().equals(usuario.getContrasenia())) {
                 session.setAttribute("sessionUsuario", correo);
+                session.setAttribute("idUsuario", usuario.getIdUsuario());
                 if (usuario.getAlumno() != null) {
                     return "perfilalumno";
                 }

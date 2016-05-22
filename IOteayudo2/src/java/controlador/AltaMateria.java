@@ -6,6 +6,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import logica.RegistoMateriaHelper;
 import modelo.Materia;
+import org.hibernate.Query;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Clase para dar de alta una materia.
@@ -27,6 +29,8 @@ public class AltaMateria {
     private FacesMessage message;
     /* Lógica para registrar la materia. */
     private final RegistoMateriaHelper rmh;
+    /* Para trabajar con sesiones. */
+    private final HttpServletRequest httpServletRequest;
     
     /**
      * Constructor por omisión. Inicializa los objetos necesarios para 
@@ -34,6 +38,7 @@ public class AltaMateria {
      */
     public AltaMateria() {
         faceContext = FacesContext.getCurrentInstance();
+        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
         rmh = new RegistoMateriaHelper();
     }
     
@@ -58,7 +63,9 @@ public class AltaMateria {
      */
     public String daDeAltaMateria() {
         Materia materia = construyeMateria();
-        rmh.registraMateria(materia);
+        /* Obtenemos el id del usuario actual. */
+        int idTutor = Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString());
+        rmh.registraMateria(materia, idTutor);
         return "perfiltutor";
     }
 
