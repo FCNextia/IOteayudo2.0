@@ -4,6 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import logica.RegistoMateriaHelper;
 import modelo.Materia;
 
 /**
@@ -24,6 +25,8 @@ public class AltaMateria {
     private final FacesContext faceContext;
     /* Para mostrar mensajes en la vista. */
     private FacesMessage message;
+    /* Lógica para registrar la materia. */
+    private final RegistoMateriaHelper rmh;
     
     /**
      * Constructor por omisión. Inicializa los objetos necesarios para 
@@ -31,6 +34,7 @@ public class AltaMateria {
      */
     public AltaMateria() {
         faceContext = FacesContext.getCurrentInstance();
+        rmh = new RegistoMateriaHelper();
     }
     
     /**
@@ -40,7 +44,7 @@ public class AltaMateria {
      */
     public Materia construyeMateria() {
         Materia materia = new Materia();
-        materia.setIdMateria(idMateria);
+        materia.setIdMateria(1729);
         materia.setNombreMateria(nombre);
         materia.setAreaMateria(area);
         return materia;
@@ -54,7 +58,31 @@ public class AltaMateria {
      */
     public String daDeAltaMateria() {
         Materia materia = construyeMateria();
-        // logica para guardar materia
+        rmh.registraMateria(materia);
         return "perfiltutor";
+    }
+
+    public int getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
     }
 }

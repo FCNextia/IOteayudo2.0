@@ -61,16 +61,16 @@
                   <p>Por favor, llena los siguientes campos: </p>
                   <div class="row">
                       <div class="col-md-6">
-                          <p><h:inputText pt:placeholder="Nombre de la materia" class="form-control"/></p>
+                          <p><h:inputText pt:placeholder="Nombre de la materia" value="#{altaMateria.nombre}" class="form-control"/></p>
                           <p>Selecciona el área de la materia: </p>
-                          <p><h:selectOneListbox value="">
+                          <p><h:selectOneListbox value="#{altaMateria.area}">
                                   <f:selectItem itemValue="1" itemLabel="Área 1: Ciencias Físico-Matemáticas y las Ingenierías"/>
                                   <f:selectItem itemValue="2" itemLabel="Área 2: Ciencias Biológicas y de la Salud"/>
                                   <f:selectItem itemValue="3" itemLabel="Área 3: Ciencias Sociales"/>
                                   <f:selectItem itemValue="4" itemLabel="Área 4: Artes y Humanidades"/>
                               </h:selectOneListbox></p>
                           <br/>
-                    <h:commandButton value="Agregar Materia" action="#" class="btn btn-lg btn-primary btn-block"/>
+                          <h:commandButton value="Agregar Materia" action="#{altaMateria.daDeAltaMateria()}" class="btn btn-lg btn-primary btn-block"/>
                       </div>
                   </div>
               </h:form>
