@@ -41,7 +41,7 @@
     </class>
     <sql-query name="BuscaPorCorreo">
 	<return alias="Usuario" class="modelo.Usuario"/>
-	<![CDATA[select * from public.usuario where correo_usuario = :correoUsuario]]>
+	<![CDATA[select * from public.usuario where correo = :correoUsuario]]>
     </sql-query>
     <sql-query name="BuscarTutor">
         <return alias="Usuario" class="modelo.Usuario"/>
