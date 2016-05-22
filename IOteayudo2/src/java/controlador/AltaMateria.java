@@ -19,10 +19,6 @@ public class AltaMateria {
     
     /* Id de la materia a crear. */
     private int idMateria;
-    /* Nombre de la materia a crear. */
-    private String nombre;
-    /* Área de la materia a crear. */
-    private int area;
     /* Obtiene información de la aplicación. */
     private final FacesContext faceContext;
     /* Para mostrar mensajes en la vista. */
@@ -43,29 +39,15 @@ public class AltaMateria {
     }
     
     /**
-     * Método para construir materias. Construye una materia con la información
-     * recibida por el formulario correspondiente.
-     * @return Materia lista para usarse.
-     */
-    public Materia construyeMateria() {
-        Materia materia = new Materia();
-        materia.setIdMateria(1729); // tenemos que agregar un serial
-        materia.setNombreMateria(nombre);
-        materia.setAreaMateria(area);
-        return materia;
-    }
-    
-    /**
      * Método para dar de alta una materia. Da de alta la materia y redirige al
      * usuario (tutor) a su perfil.
      * @return Dirección de la página de perfil si los datos son correctos, en
      * caso contrario, se mantiene en la página de registro de materias.
      */
     public String daDeAltaMateria() {
-        Materia materia = construyeMateria();
         /* Obtenemos el id del usuario actual. */
         int idTutor = Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString());
-        rmh.registraMateria(materia, idTutor);
+        rmh.registraMateria(idMateria, idTutor);
         return "perfiltutor";
     }
 
@@ -75,21 +57,5 @@ public class AltaMateria {
 
     public void setIdMateria(int idMateria) {
         this.idMateria = idMateria;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getArea() {
-        return area;
-    }
-
-    public void setArea(int area) {
-        this.area = area;
     }
 }

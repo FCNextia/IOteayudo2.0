@@ -32,4 +32,8 @@
         <return alias="Materia" class="modelo.Materia"/>
         <![CDATA[SELECT * FROM materia WHERE similarity(nombre_materia, :materia) > 0.5 ]]>
     </sql-query>
+    <sql-query name="BuscaMateriaPorID">
+	<return alias="Materia" class="modelo.Materia"/>
+	<![CDATA[select * from public.materia where id_materia = :idMateria]]>
+    </sql-query>
 </hibernate-mapping>

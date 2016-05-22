@@ -53,13 +53,14 @@ public class RegistoMateriaHelper {
      * @throws TransactionException Se lanza la excepción en caso de un error
      * durante la transacción.
      */
-    public void registraMateria(Materia materia, int id) throws TransactionException {
+    public void registraMateria(int idMateria, int idTutor) throws TransactionException {
         Transaction tx = session.beginTransaction();
-        TutorMateriaId tmi = construyeTMI(materia, id);
-        Query q = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", id);
+        Query p = session.getNamedQuery("BuscaMateriaPorID").setInteger("idMateria", idMateria);
+        Materia m = (Materia)p.uniqueResult();
+        TutorMateriaId tmi = construyeTMI(m, idTutor);
+        Query q = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", idTutor);
         Tutor t = (Tutor)q.uniqueResult();
-        TutorMateria tm = construyeTM(tmi, materia, t);
-        session.persist(materia);
+        TutorMateria tm = construyeTM(tmi, m, t);
         session.persist(tm);
         tx.commit();
     }
