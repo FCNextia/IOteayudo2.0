@@ -44,7 +44,6 @@ public class ProcesarSolicitudes {
      */
     public String enviaSolicitud() {
         Solicitud solicitud = new Solicitud();
-        solicitud.setIdSolicitud(1729);
         solicitud.setAsesoria(new Asesoria());
         solicitud.setEstado('e');
         CerrarSesion cs = new CerrarSesion();

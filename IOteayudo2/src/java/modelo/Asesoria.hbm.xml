@@ -6,7 +6,9 @@
     <class name="modelo.Asesoria" table="asesoria" schema="public" optimistic-lock="version">
         <id name="idAsesoria" type="int">
             <column name="id_asesoria" />
-            <generator class="assigned" />
+            <generator class="sequence" >
+                <param name="sequence">asesoria_id_asesoria_seq</param>
+            </generator>
         </id>
         <property name="costo" type="int">
             <column name="costo" not-null="true" />

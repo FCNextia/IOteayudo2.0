@@ -46,7 +46,10 @@ public class EnviaSolicitudHelper {
         solicitud.setAlumno(a);
         solicitud.setTutor(t);
         solicitud.setMateria(m);
-        Asesoria as = new Asesoria(1729, 260, new Date(), "Pendiente");
+        Asesoria as = new Asesoria();
+        as.setCosto(260);
+        as.setFecAsesoria(new Date());
+        as.setDireccion("Pendiente");
         solicitud.setAsesoria(as);
         session.persist(solicitud.getAsesoria());
         session.persist(solicitud);
