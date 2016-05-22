@@ -6,7 +6,9 @@
     <class name="modelo.Solicitud" table="solicitud" schema="public" optimistic-lock="version">
         <id name="idSolicitud" type="int">
             <column name="id_solicitud" />
-            <generator class="assigned" />
+            <generator class="sequence" >
+                <param name="sequence">solicitud_id_solicitud_seq</param>
+            </generator>
         </id>
         <many-to-one name="alumno" class="modelo.Alumno" fetch="select">
             <column name="id_alumno" not-null="true" />
