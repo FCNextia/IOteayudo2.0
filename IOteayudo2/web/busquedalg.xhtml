@@ -85,6 +85,12 @@
                 <f:param name="apellido_materno_usuario" value="#{tutor.apm}"/>
               </h:link>
             </h:column>
+              <h:column>
+                      #{procesarSolicitudes.setMateria(buscarTutor.materia)}
+                      #{procesarSolicitudes.setTutor(tutor.idUsuario)}
+                      <h:commandButton value="Solicitar asesoría" action="#{procesarSolicitudes.enviaSolicitud()}" class="btn btn-warning"/>             
+               
+              </h:column>
           </h:dataTable>
           </h:form>
         </div>
