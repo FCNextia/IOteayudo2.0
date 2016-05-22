@@ -44,7 +44,7 @@ public class AltaMateria {
      */
     public Materia construyeMateria() {
         Materia materia = new Materia();
-        materia.setIdMateria(1729);
+        materia.setIdMateria(1729); // tenemos que agregar un serial
         materia.setNombreMateria(nombre);
         materia.setAreaMateria(area);
         return materia;
