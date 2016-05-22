@@ -21,9 +21,9 @@ import modelo.Usuario;
 @ApplicationScoped
 public class BuscarTutor {
     private List<Usuario> tutores; //Lista en donde guardaremos los tutores de la busqueda
-    private Usuario tutor; //Lista donde guardaremos el tutor a buscar
-    private String materia; //La materia por la cual buscaremos un tutor
-    private boolean flag = true;
+    private Usuario tutor;         //Lista donde guardaremos el tutor a buscar
+    private String materia;        //La materia por la cual buscaremos un tutor
+    private boolean flag = false;
 
     public boolean isFlag() {
         return flag;
@@ -52,19 +52,25 @@ public class BuscarTutor {
         //al bean. Se supone que el String materia no es nulo.
         //Aun asi, se preguntara por si un usuario invoca primero este metodo
         if(materia != null){
-            String nueva = helper.verificaMateria(this.materia);
             //Si temp == nueva significa que no debemos mostrar un mensaje
             //de "quiza quisiste decir"
             //Asignamos la variable nueva a materia, ya que esta
             //esta correcta. Temp puede o no estar mal escrita.
-            setMateria(nueva);
             setTutores(helper.verificaTutor(materia));
         }
     }
 
+    public String solicitud(){
+        materia = null;
+        tutores = null;
+        flag = true;
+        return "perfiltutor";
+    }
+    
     public Usuario getTutor() {
         return tutor;
     }
+    
 
     public void setTutor(Usuario tutor) {
         this.tutor = tutor;

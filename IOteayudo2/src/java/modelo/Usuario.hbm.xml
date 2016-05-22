@@ -5,12 +5,10 @@
 <hibernate-mapping>
     <class name="modelo.Usuario" table="usuario" schema="public" optimistic-lock="version">
         <comment>El usuario con nombre NOMBRE_USUARIO, apellido paterno APELLIDO_PATERNO_USUARIO, apellido materno APELLIDO MATERNO tiene una contrase&#195;&#177;a
-        CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como informacion adicional ACERCA_DE_USUARIO.</comment>
+        CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como informaci&#195;&#179;n adicional ACERCA_DE_USUARIO.</comment>
         <id name="idUsuario" type="int">
             <column name="id_usuario" />
-            <generator class="sequence" >
-                <param name="sequence">usuario_id_usuario_seq</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <property name="correo" type="string">
             <column name="correo" not-null="true" unique="true" />
@@ -45,6 +43,6 @@
     </sql-query>
     <sql-query name="BuscarTutor">
         <return alias="Usuario" class="modelo.Usuario"/>
-        <![CDATA[SELECT * FROM buscartutor(:nombreMateria)]]>
+        <![CDATA[SELECT * FROM buscatutor(:nombreMateria)]]>
     </sql-query>
 </hibernate-mapping>
