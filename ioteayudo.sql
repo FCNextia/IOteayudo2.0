@@ -48,7 +48,7 @@ is
 'El usuario ID_USUARIO es un tutor con nivel de estudios NIVEL_ESTUDIOS.';
 
 CREATE TABLE materia (
-	id_materia serial PRIMARY KEY,
+	id_materia integer PRIMARY KEY,
 	nombre_materia text NOT NULL,
 	area_materia integer NOT NULL CHECK(area_materia >= 1 and area_materia <= 4)
 );
@@ -57,6 +57,17 @@ comment on table materia
 is
 'La materia ID_MATERIA con nombre NOMBRE_MATERIA se encuentra en el área
 AREA_MATERIA';
+
+INSERT INTO materia(id_materia, nombre_materia, area_materia)
+VALUES (1, 'Matemáticas', 1),
+	   (2, 'Física', 1),
+	   (3, 'Química', 2),
+	   (4, 'Biología', 2),
+	   (5, 'Informática', 1),
+	   (6, 'Historia', 4),
+	   (7, 'Geografía', 3),
+	   (8, 'Literatura', 4),
+	   (9, 'Derecho', 3);
 
 CREATE TABLE tutor_materia (
 	id_usuario integer NOT NULL REFERENCES tutor(id_usuario),
