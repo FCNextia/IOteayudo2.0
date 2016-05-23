@@ -28,22 +28,29 @@ public class IniciarSesion {
     private final FacesContext faceContext; // Obtiene información de la aplicación
     private FacesMessage message; // Permite el envio de mensajes entre el bean y la vista
     private String correo;
+    private String nombre;
     private String contrasenia;
+    private int calificacion;
+    private final HttpServletRequest httpServletRequest;
 
     public IniciarSesion() {
         faceContext = FacesContext.getCurrentInstance();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
+        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
         session = httpServletRequest.getSession(true);
         helper = new IniciarSesionHelper();
     }
 
     public String iniciarSesion() {
+        calificacion = 0;
         Usuario usuario = helper.getLoginPorCorreo(getCorreo());
         if (usuario != null) {
             // TODO(MAPA): Hay que garantizar una mejor forma de validar las contraseñas
             if (getContrasenia().equals(usuario.getContrasenia())) {
                 session.setAttribute("sessionUsuario", correo);
                 session.setAttribute("idUsuario", usuario.getIdUsuario());
+                String nombreC = usuario.getNombreUsuario() + " " +  usuario.getApp() + " " + usuario.getApm();
+                session.setAttribute("nombre", nombreC);
+                session.setAttribute("calificacion", usuario.getCalificacion());
                 if (usuario.getAlumno() != null) {
                     return "perfilalumno";
                 }
@@ -78,4 +85,22 @@ public class IniciarSesion {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+    public String getNombre() {
+        return httpServletRequest.getSession().getAttribute("nombre").toString();
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCalificacion() {
+        return 1;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+    
+    
 }
