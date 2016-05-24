@@ -31,6 +31,9 @@ public class EnviaSolicitudHelper {
     /**
      * Método encargado de guardar la solicitud.
      * @param solicitud Solicitud a guardar.
+     * @param mail Correo del usuario.
+     * @param idTutor id del tutor.
+     * @param idMateria id de la materia.
      * @throws TransactionException En caso de error durante la transacción.
      */
     public void guardaSolicitud(Solicitud solicitud, String mail, int idTutor, int idMateria) throws TransactionException {
