@@ -39,7 +39,7 @@ public class EnviaSolicitudHelper {
         Usuario u = (Usuario)p.uniqueResult();
         Query q = session.getNamedQuery("BuscaAlumnoPorID").setInteger("idUsuario", u.getIdUsuario());
         Alumno a = (Alumno)q.uniqueResult();
-        Query s = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", 2);
+        Query s = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", idTutor);
         Tutor t = (Tutor)s.uniqueResult();
         Query r = session.getNamedQuery("BuscaMateriaPorID").setInteger("idMateria", idMateria);
         Materia m = (Materia)r.uniqueResult();

@@ -19,10 +19,6 @@ import modelo.Tutor;
 @RequestScoped
 public class ProcesarSolicitudes {
     
-    /* Materia que se está pidiendo. */
-    private String materia;
-    /* Tutor elegido. */
-    private int tutor;
     /* Obtiene información de la aplicación. */
     private final FacesContext faceContext;
     /* Para mostrar mensajes en la vista. */
@@ -42,18 +38,20 @@ public class ProcesarSolicitudes {
      * Método que envía una solicitud.
      * @return String perfil del alumno.
      */
-    public String enviaSolicitud() {
+    public String enviaSolicitud(String materia, int tutor) {
         Solicitud solicitud = new Solicitud();
         solicitud.setAsesoria(new Asesoria());
         solicitud.setEstado('e');
         CerrarSesion cs = new CerrarSesion();
         String mail = cs.getCorreo();
-        int idMateria = obtenID("Matemáticas");
+        int idMateria = obtenID(materia);
         esh.guardaSolicitud(solicitud, mail, tutor, idMateria);
         return "perfilalumno";
     }
     
     private int obtenID(String s) {
+        if (s == null)
+            return -1;
         switch(s) {
             case "Matemáticas":
                 return 1;
@@ -73,23 +71,8 @@ public class ProcesarSolicitudes {
                 return 8;
             case "Derecho":
                 return 9;
+            default:
+                return -1;
         }
-        return -1;
-    }
-
-    public String getMateria() {
-        return materia;
-    }
-
-    public void setMateria(String materia) {
-        this.materia = materia;
-    }
-
-    public int getTutor() {
-        return tutor;
-    }
-
-    public void setTutor(int tutor) {
-        this.tutor = tutor;
     }
 }

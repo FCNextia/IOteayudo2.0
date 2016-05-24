@@ -65,6 +65,7 @@
               
               <h:inputText pt:placeholder="Busca tutor por la materia que quieres reforzar" 
                            value="#{buscarTutor.materia}" label="Buscar" class="form-control"/>
+              <c:set var="materia" value="#{buscarTutor.materia}"/>
               <span class="input-group-btn">
                 <h:commandButton action="#{buscarTutor.encontrarTutor()}" value="Buscar" class="btn btn-default"/>
               </span>
@@ -86,9 +87,7 @@
               </h:link>
             </h:column>
               <h:column>
-                      #{procesarSolicitudes.setMateria(buscarTutor.materia)}
-                      #{procesarSolicitudes.setTutor(tutor.idUsuario)}
-                      <h:commandButton value="Solicitar asesoría" action="#{procesarSolicitudes.enviaSolicitud()}" class="btn btn-warning"/>             
+                      <h:commandButton value="Solicitar asesoría" action="#{procesarSolicitudes.enviaSolicitud(materia, tutor.idUsuario)}" class="btn btn-warning"/>             
                
               </h:column>
           </h:dataTable>
