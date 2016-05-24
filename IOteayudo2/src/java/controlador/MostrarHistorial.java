@@ -26,17 +26,26 @@ public class MostrarHistorial {
     /* Solcitudes pendientes. */
     private List<Solicitud> solicitudes;
     
+    /**
+     * Constructor por omisión.
+     */
     public MostrarHistorial() {
         faceContext = FacesContext.getCurrentInstance();
         mhh = new MuestraHistorialHelper();
     }
     
+    /**
+     * Método encargado de obtener las solicitudes asociadas a un alumno.
+     */
     public void obtenSolicitudesAlumno() {
         IniciarSesion is = new IniciarSesion();
         int idUsuario = is.getIDUsuario();
         solicitudes = mhh.getSolicitudesAlumno(idUsuario);
     }
     
+    /**
+     * Método encargado de obtener las solicitadas asociadas a un tutor.
+     */
     public void obtenSolicitudesTutor() {
         IniciarSesion is = new IniciarSesion();
         int idUsuario = is.getIDUsuario();
