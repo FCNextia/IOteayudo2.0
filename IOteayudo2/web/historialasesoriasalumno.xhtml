@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+  <h:head>
+    <title>IOteayudo</title>
+    <link rel="stylesheet" href="resource/css/bootstrap.min.css"/>
+  </h:head>
+  <h:body>
+    <br/>
+    
+    <div class="container">        
+      <nav class="navbar navbar-default">
+	<div class="container-fluid">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">
+              <img src="resource/img/IOteAyudo.png" class="img-responsive img" alt=""></img>
+	    </a>
+	  </div>
+
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <form class="navbar-form navbar-right" role="search">
+	      <h:link value="Busca Tutor" outcome="busquedalg.xhtml" class="btn btn-primary"/>
+	    </form>
+            <h:form>  
+	    <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		  #{cerrarSesion.correo}<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+		  <li><a href="#">Perfil</a></li>
+		  <li><a href="#">Configuración</a></li>
+		  <li role="separator" class="divider"></li>
+                  <li><h:commandLink action="#{cerrarSesion.cerrarSession()}" value="Cerrar Sesion"/></li>
+		</ul>
+              </li>
+	    </ul>
+            </h:form>
+	  </div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+      </nav>
+    </div> 
+    <br/>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          
+          
+          <h1>Solicitudes pendientes</h1>
+          <h:form>
+              #{mostrarHistorial.obtenSolicitudesAlumno()}
+              <h:dataTable value="#{mostrarHistorial.solicitudes}" var="solicitud" class="table">
+            <h:column>
+                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <h:link value="#{solicitud.tutor.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_tutor" value="#{solicitud.tutor.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <h:link value="#{solicitud.estado}" outcome="solicitud">
+                    <f:param name="estado" value="#{solicitud.estado}"/>
+              </h:link>
+            </h:column>
+                   <h:column>
+                      <h:commandButton value="Cancelar" action="#" class="btn btn-warning"/>             
+              </h:column>
+          </h:dataTable>
+          </h:form>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="resource/js/bootstrap.min.js"></script>
+  </h:body>
+</html>
+

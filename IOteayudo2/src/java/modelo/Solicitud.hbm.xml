@@ -26,4 +26,12 @@
             <column name="estado" length="1" not-null="true" />
         </property>
     </class>
+    <sql-query name="BuscaSolicitudPorIDA">
+	<return alias="Solicitud" class="modelo.Solicitud"/>
+	<![CDATA[select * from public.solicitud where id_alumno = :idAlumno and estado like 'e']]>
+    </sql-query>
+    <sql-query name="BuscaSolicitudPorIDT">
+	<return alias="Solicitud" class="modelo.Solicitud"/>
+	<![CDATA[select * from public.solicitud where id_tutor = :idTutor and estado like 'e']]>
+    </sql-query>
 </hibernate-mapping>

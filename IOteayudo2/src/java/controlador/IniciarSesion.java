@@ -113,4 +113,7 @@ public class IniciarSesion {
         this.calificacion = calificacion;
     }    
     
+    public int getIDUsuario() {
+        return Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString());
+    }
 }
