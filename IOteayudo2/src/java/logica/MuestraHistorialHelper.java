@@ -32,4 +32,12 @@ public class MuestraHistorialHelper {
         tx.commit();
         return solicitudes;
     }
+    
+    public List<Solicitud> getSolicitudesTutor(int idUsuario) throws TransactionException {
+        Transaction tx = session.beginTransaction();
+        Query q = session.getNamedQuery("BuscaSolicitudPorIDT").setInteger("idTutor", idUsuario);
+        List<Solicitud> solicitudes = (List<Solicitud>)q.list();
+        tx.commit();
+        return solicitudes;
+    }
 }

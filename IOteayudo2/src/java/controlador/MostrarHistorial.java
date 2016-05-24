@@ -36,6 +36,12 @@ public class MostrarHistorial {
         int idUsuario = is.getIDUsuario();
         solicitudes = mhh.getSolicitudesAlumno(idUsuario);
     }
+    
+    public void obtenSolicitudesTutor() {
+        IniciarSesion is = new IniciarSesion();
+        int idUsuario = is.getIDUsuario();
+        solicitudes = mhh.getSolicitudesTutor(idUsuario);
+    }
 
     public List<Solicitud> getSolicitudes() {
         return solicitudes;

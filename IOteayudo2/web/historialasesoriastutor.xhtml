@@ -61,7 +61,7 @@
           
           <h1>Solicitudes pendientes</h1>
           <h:form>
-              #{mostrarHistorial.obtenSolicitudesAlumno()}
+              #{mostrarHistorial.obtenSolicitudesTutor()}
               <h:dataTable value="#{mostrarHistorial.solicitudes}" var="solicitud" class="table">
             <h:column>
                 <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
@@ -79,7 +79,10 @@
               </h:link>
             </h:column>
                    <h:column>
-                      <h:commandButton value="Cancelar" action="#" class="btn btn-warning"/>             
+                      <h:commandButton value="Aceptar" action="#" class="btn btn-warning"/>             
+              </h:column>
+                  <h:column>
+                      <h:commandButton value="Rechazar" action="#" class="btn btn-warning"/>             
               </h:column>
           </h:dataTable>
           </h:form>
