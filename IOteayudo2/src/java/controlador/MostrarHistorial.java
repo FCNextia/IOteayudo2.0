@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import logica.MuestraHistorialHelper;
 import modelo.Solicitud;
 
@@ -25,12 +26,16 @@ public class MostrarHistorial {
     private MuestraHistorialHelper mhh;
     /* Solcitudes pendientes. */
     private List<Solicitud> solicitudes;
+    private final HttpServletRequest httpServletRequest;
+    private int idUsuario;
     
     /**
      * Constructor por omisión.
      */
     public MostrarHistorial() {
         faceContext = FacesContext.getCurrentInstance();
+        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
+        idUsuario = (Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString()));
         mhh = new MuestraHistorialHelper();
     }
     
@@ -38,8 +43,6 @@ public class MostrarHistorial {
      * Método encargado de obtener las solicitudes asociadas a un alumno.
      */
     public void obtenSolicitudesAlumno() {
-        IniciarSesion is = new IniciarSesion();
-        int idUsuario = is.getIDUsuario();
         solicitudes = mhh.getSolicitudesAlumno(idUsuario);
     }
     
@@ -47,8 +50,6 @@ public class MostrarHistorial {
      * Método encargado de obtener las solicitadas asociadas a un tutor.
      */
     public void obtenSolicitudesTutor() {
-        IniciarSesion is = new IniciarSesion();
-        int idUsuario = is.getIDUsuario();
         solicitudes = mhh.getSolicitudesTutor(idUsuario);
     }
 
