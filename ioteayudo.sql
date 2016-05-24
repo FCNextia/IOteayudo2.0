@@ -106,7 +106,7 @@ returns setof usuario as $$
     inner join tutor on (usuario.id_usuario = tutor.id_usuario)
     inner join tutor_materia on (usuario.id_usuario = tutor_materia.id_usuario)
     inner join materia on (tutor_materia.id_materia = materia.id_materia)
-  where nombre_materia = v_nombre_materia;
+  where similarity(nombre_materia,v_nombre_materia) > 0.3;
 $$ language sql stable;
 
 comment on function buscatutor(v_nombre_materia text)
