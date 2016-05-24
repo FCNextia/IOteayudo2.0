@@ -41,7 +41,7 @@ public class ProcesarSolicitudes {
     public String enviaSolicitud(String materia, int tutor) {
         Solicitud solicitud = new Solicitud();
         solicitud.setAsesoria(new Asesoria());
-        solicitud.setEstado('e');
+        solicitud.setEstado('p');
         CerrarSesion cs = new CerrarSesion();
         String mail = cs.getCorreo();
         int idMateria = obtenID(materia);

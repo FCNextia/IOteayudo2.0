@@ -74,15 +74,30 @@
               </h:link>
             </h:column>
             <h:column>
-                <h:link value="#{solicitud.estado}" outcome="solicitud">
-                    <f:param name="estado" value="#{solicitud.estado}"/>
-              </h:link>
+                <c:if test="#{solicitud.estado == 'p'}">
+                    <h:link value="Pendiente" outcome="solicitud">
+                        <f:param name="estado" value="#{solicitud.estado}"/>
+                    </h:link>
+                </c:if>
+                <c:if test="#{solicitud.estado == 'a'}">
+                    <h:link value="Aceptada" outcome="solicitud">
+                        <f:param name="estado" value="#{solicitud.estado}"/>
+                    </h:link>
+                </c:if>
+                <c:if test="#{solicitud.estado == 'r'}">
+                    <h:link value="Rechazada" outcome="solicitud">
+                        <f:param name="estado" value="#{solicitud.estado}"/>
+                    </h:link>
+                </c:if>
+                <c:otherwise>
+                    <p>CHECAR ESTE CODIGO</p>
+                </c:otherwise>
             </h:column>
                    <h:column>
-                      <h:commandButton value="Aceptar" action="#" class="btn btn-warning"/>             
+                      <h:commandButton value="Aceptar" action="#" class="btn btn-success"/>             
               </h:column>
                   <h:column>
-                      <h:commandButton value="Rechazar" action="#" class="btn btn-warning"/>             
+                      <h:commandButton value="Rechazar" action="#" class="btn btn-danger"/>             
               </h:column>
           </h:dataTable>
           </h:form>

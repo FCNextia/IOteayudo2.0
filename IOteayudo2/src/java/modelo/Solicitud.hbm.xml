@@ -28,10 +28,10 @@
     </class>
     <sql-query name="BuscaSolicitudPorIDA">
 	<return alias="Solicitud" class="modelo.Solicitud"/>
-	<![CDATA[select * from public.solicitud where id_alumno = :idAlumno and estado like 'e']]>
+	<![CDATA[select * from public.solicitud where id_alumno = :idAlumno and estado like 'p']]>
     </sql-query>
     <sql-query name="BuscaSolicitudPorIDT">
 	<return alias="Solicitud" class="modelo.Solicitud"/>
-	<![CDATA[select * from public.solicitud where id_tutor = :idTutor and estado like 'e']]>
+	<![CDATA[select * from public.solicitud where id_tutor = :idTutor and estado like 'p']]>
     </sql-query>
 </hibernate-mapping>
