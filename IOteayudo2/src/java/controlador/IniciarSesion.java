@@ -29,6 +29,7 @@ public class IniciarSesion {
     private FacesMessage message; // Permite el envio de mensajes entre el bean y la vista
     private String correo;
     private String nombre;
+    private String nombreYApp;
     private String contrasenia;
     private int calificacion;
     private final HttpServletRequest httpServletRequest;
@@ -48,6 +49,8 @@ public class IniciarSesion {
             if (getContrasenia().equals(usuario.getContrasenia())) {
                 session.setAttribute("sessionUsuario", correo);
                 session.setAttribute("idUsuario", usuario.getIdUsuario());
+                String nombreYApp = usuario.getNombreUsuario() + " " + usuario.getApp();
+                session.setAttribute("nombreYApp", nombreYApp);
                 String nombreC = usuario.getNombreUsuario() + " " +  usuario.getApp() + " " + usuario.getApm();
                 session.setAttribute("nombre", nombreC);
                 session.setAttribute("calificacion", usuario.getCalificacion());
@@ -93,6 +96,14 @@ public class IniciarSesion {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public String getNombreYApp(){
+        return httpServletRequest.getSession().getAttribute("nombreYApp").toString();
+    }
+    
+    public void setNombreYApp(String nombreYApp){
+        this.nombreYApp = nombreYApp;
+    }
 
     public int getCalificacion() {
         return 1;
@@ -100,7 +111,6 @@ public class IniciarSesion {
 
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
-    }
-    
+    }    
     
 }
