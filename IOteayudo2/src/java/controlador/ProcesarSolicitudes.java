@@ -4,6 +4,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import logica.BuscarTutorHelper;
 import logica.EnviaSolicitudHelper;
 import modelo.Alumno;
 import modelo.Asesoria;
@@ -52,7 +53,8 @@ public class ProcesarSolicitudes {
     private int obtenID(String s) {
         if (s == null)
             return -1;
-        switch(s) {
+        String r = new BuscarTutorHelper().encontrarMateria(s);
+        switch(r) {
             case "Matemáticas":
                 return 1;
             case "Física":

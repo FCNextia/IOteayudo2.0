@@ -52,10 +52,6 @@ public class BuscarTutor {
         //al bean. Se supone que el String materia no es nulo.
         //Aun asi, se preguntara por si un usuario invoca primero este metodo
         if(materia != null){
-            //Si temp == nueva significa que no debemos mostrar un mensaje
-            //de "quiza quisiste decir"
-            //Asignamos la variable nueva a materia, ya que esta
-            //esta correcta. Temp puede o no estar mal escrita.
             setTutores(helper.verificaTutor(materia));
         }
     }

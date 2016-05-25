@@ -94,10 +94,10 @@
                 </c:otherwise>
             </h:column>
                    <h:column>
-                      <h:commandButton value="Aceptar" action="#" class="btn btn-success"/>             
+                       <h:commandButton value="Aceptar" action="#{solicitud.setEstado('a')}" class="btn btn-success"/>             
               </h:column>
                   <h:column>
-                      <h:commandButton value="Rechazar" action="#" class="btn btn-danger"/>             
+                      <h:commandButton value="Rechazar" action="#{solicitud.setEstado('r')}" class="btn btn-danger"/>             
               </h:column>
           </h:dataTable>
           </h:form>
