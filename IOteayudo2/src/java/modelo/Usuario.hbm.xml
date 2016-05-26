@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19/05/2016 12:04:00 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 26/05/2016 04:28:38 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelo.Usuario" table="usuario" schema="public" optimistic-lock="version">
         <comment>El usuario con nombre NOMBRE_USUARIO, apellido paterno APELLIDO_PATERNO_USUARIO, apellido materno APELLIDO MATERNO tiene una contrase&#195;&#177;a
-        CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como informacion adicional ACERCA_DE_USUARIO.</comment>
+        CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como informaci&#195;&#179;n adicional ACERCA_DE_USUARIO.</comment>
         <id name="idUsuario" type="int">
             <column name="id_usuario" />
             <generator class="sequence">
@@ -39,6 +39,7 @@
         <one-to-one name="alumno" class="modelo.Alumno"></one-to-one>
         <one-to-one name="tutor" class="modelo.Tutor"></one-to-one>
     </class>
+    
     <sql-query name="BuscaPorCorreo">
 	<return alias="Usuario" class="modelo.Usuario"/>
 	<![CDATA[select * from public.usuario where correo = :correoUsuario]]>

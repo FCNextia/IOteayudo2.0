@@ -8,7 +8,7 @@ import logica.EnviaSolicitudHelper;
 import modelo.Alumno;
 import modelo.Asesoria;
 import modelo.Materia;
-import modelo.Solicitud;
+//import modelo.Solicitud;
 import modelo.Tutor;
 
 /**
@@ -39,13 +39,13 @@ public class ProcesarSolicitudes {
      * @return String perfil del alumno.
      */
     public String enviaSolicitud(String materia, int tutor) {
-        Solicitud solicitud = new Solicitud();
-        solicitud.setAsesoria(new Asesoria());
-        solicitud.setEstado('p');
+    //    Solicitud solicitud = new Solicitud();
+    //    solicitud.setAsesoria(new Asesoria());
+    //    solicitud.setEstado('p');
         CerrarSesion cs = new CerrarSesion();
         String mail = cs.getCorreo();
         int idMateria = obtenID(materia);
-        esh.guardaSolicitud(solicitud, mail, tutor, idMateria);
+    //    esh.guardaSolicitud(solicitud, mail, tutor, idMateria);
         return "perfilalumno";
     }
     

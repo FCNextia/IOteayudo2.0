@@ -11,12 +11,11 @@
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
-    <mapping resource="modelo/Tutor.hbm.xml"/>
+    <mapping resource="modelo/Usuario.hbm.xml"/>
     <mapping resource="modelo/Alumno.hbm.xml"/>
-    <mapping resource="modelo/Materia.hbm.xml"/>
     <mapping resource="modelo/TutorMateria.hbm.xml"/>
     <mapping resource="modelo/Asesoria.hbm.xml"/>
-    <mapping resource="modelo/Usuario.hbm.xml"/>
-    <mapping resource="modelo/Solicitud.hbm.xml"/>
+    <mapping resource="modelo/Materia.hbm.xml"/>
+    <mapping resource="modelo/Tutor.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

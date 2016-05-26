@@ -1,5 +1,5 @@
 package modelo;
-// Generated 19/05/2016 12:03:59 AM by Hibernate Tools 4.3.1
+// Generated 26/05/2016 04:28:37 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Alumno  implements java.io.Serializable {
      private int idUsuario;
      private Usuario usuario;
      private Date fecNac;
-     private Set solicituds = new HashSet(0);
+     private Set asesorias = new HashSet(0);
 
     public Alumno() {
     }
@@ -25,10 +25,10 @@ public class Alumno  implements java.io.Serializable {
         this.usuario = usuario;
         this.fecNac = fecNac;
     }
-    public Alumno(Usuario usuario, Date fecNac, Set solicituds) {
+    public Alumno(Usuario usuario, Date fecNac, Set asesorias) {
        this.usuario = usuario;
        this.fecNac = fecNac;
-       this.solicituds = solicituds;
+       this.asesorias = asesorias;
     }
    
     public int getIdUsuario() {
@@ -52,12 +52,12 @@ public class Alumno  implements java.io.Serializable {
     public void setFecNac(Date fecNac) {
         this.fecNac = fecNac;
     }
-    public Set getSolicituds() {
-        return this.solicituds;
+    public Set getAsesorias() {
+        return this.asesorias;
     }
     
-    public void setSolicituds(Set solicituds) {
-        this.solicituds = solicituds;
+    public void setAsesorias(Set asesorias) {
+        this.asesorias = asesorias;
     }
 
 

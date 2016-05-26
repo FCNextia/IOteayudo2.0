@@ -1,5 +1,5 @@
 package modelo;
-// Generated 19/05/2016 12:03:59 AM by Hibernate Tools 4.3.1
+// Generated 26/05/2016 04:28:37 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class Tutor  implements java.io.Serializable {
      private int idUsuario;
      private Usuario usuario;
      private String nivelEstudio;
-     private Set solicituds = new HashSet(0);
+     private Set asesorias = new HashSet(0);
      private Set tutorMaterias = new HashSet(0);
 
     public Tutor() {
@@ -24,10 +24,10 @@ public class Tutor  implements java.io.Serializable {
     public Tutor(Usuario usuario) {
         this.usuario = usuario;
     }
-    public Tutor(Usuario usuario, String nivelEstudio, Set solicituds, Set tutorMaterias) {
+    public Tutor(Usuario usuario, String nivelEstudio, Set asesorias, Set tutorMaterias) {
        this.usuario = usuario;
        this.nivelEstudio = nivelEstudio;
-       this.solicituds = solicituds;
+       this.asesorias = asesorias;
        this.tutorMaterias = tutorMaterias;
     }
    
@@ -52,12 +52,12 @@ public class Tutor  implements java.io.Serializable {
     public void setNivelEstudio(String nivelEstudio) {
         this.nivelEstudio = nivelEstudio;
     }
-    public Set getSolicituds() {
-        return this.solicituds;
+    public Set getAsesorias() {
+        return this.asesorias;
     }
     
-    public void setSolicituds(Set solicituds) {
-        this.solicituds = solicituds;
+    public void setAsesorias(Set asesorias) {
+        this.asesorias = asesorias;
     }
     public Set getTutorMaterias() {
         return this.tutorMaterias;

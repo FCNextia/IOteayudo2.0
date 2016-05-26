@@ -1,5 +1,5 @@
 package modelo;
-// Generated 19/05/2016 12:03:59 AM by Hibernate Tools 4.3.1
+// Generated 26/05/2016 04:28:37 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,7 +15,7 @@ public class Materia  implements java.io.Serializable {
      private String nombreMateria;
      private int areaMateria;
      private Set tutorMaterias = new HashSet(0);
-     private Set solicituds = new HashSet(0);
+     private Set asesorias = new HashSet(0);
 
     public Materia() {
     }
@@ -26,12 +26,12 @@ public class Materia  implements java.io.Serializable {
         this.nombreMateria = nombreMateria;
         this.areaMateria = areaMateria;
     }
-    public Materia(int idMateria, String nombreMateria, int areaMateria, Set tutorMaterias, Set solicituds) {
+    public Materia(int idMateria, String nombreMateria, int areaMateria, Set tutorMaterias, Set asesorias) {
        this.idMateria = idMateria;
        this.nombreMateria = nombreMateria;
        this.areaMateria = areaMateria;
        this.tutorMaterias = tutorMaterias;
-       this.solicituds = solicituds;
+       this.asesorias = asesorias;
     }
    
     public int getIdMateria() {
@@ -62,12 +62,12 @@ public class Materia  implements java.io.Serializable {
     public void setTutorMaterias(Set tutorMaterias) {
         this.tutorMaterias = tutorMaterias;
     }
-    public Set getSolicituds() {
-        return this.solicituds;
+    public Set getAsesorias() {
+        return this.asesorias;
     }
     
-    public void setSolicituds(Set solicituds) {
-        this.solicituds = solicituds;
+    public void setAsesorias(Set asesorias) {
+        this.asesorias = asesorias;
     }
 
 

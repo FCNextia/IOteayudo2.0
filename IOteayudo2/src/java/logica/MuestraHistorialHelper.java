@@ -1,7 +1,7 @@
 package logica;
 
 import java.util.List;
-import modelo.Solicitud;
+//import modelo.Solicitud;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -30,6 +30,7 @@ public class MuestraHistorialHelper {
      * @throws TransactionException Si hay algún error al realizar la 
      * transacción.
      */
+    /*
     public List<Solicitud> getSolicitudesAlumno(int idUsuario) throws TransactionException {
         Transaction tx = session.beginTransaction();
         Query q = session.getNamedQuery("BuscaSolicitudPorIDA").setInteger("idAlumno", idUsuario);
@@ -45,6 +46,7 @@ public class MuestraHistorialHelper {
      * @throws TransactionException Si hay algún error al realizar la 
      * transacción.
      */
+    /*
     public List<Solicitud> getSolicitudesTutor(int idUsuario) throws TransactionException {
         Transaction tx = session.beginTransaction();
         Query q = session.getNamedQuery("BuscaSolicitudPorIDT").setInteger("idTutor", idUsuario);
@@ -52,4 +54,5 @@ public class MuestraHistorialHelper {
         tx.commit();
         return solicitudes;
     }
+*/
 }

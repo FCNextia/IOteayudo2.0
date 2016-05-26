@@ -4,7 +4,7 @@ import java.util.Date;
 import modelo.Alumno;
 import modelo.Asesoria;
 import modelo.Materia;
-import modelo.Solicitud;
+//import modelo.Solicitud;
 import modelo.Tutor;
 import modelo.Usuario;
 import org.hibernate.Query;
@@ -36,6 +36,7 @@ public class EnviaSolicitudHelper {
      * @param idMateria id de la materia.
      * @throws TransactionException En caso de error durante la transacción.
      */
+    /*
     public void guardaSolicitud(Solicitud solicitud, String mail, int idTutor, int idMateria) throws TransactionException {
         Transaction tx = session.beginTransaction();
         Query p = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", mail);
@@ -46,7 +47,7 @@ public class EnviaSolicitudHelper {
         Tutor t = (Tutor)s.uniqueResult();
         Query r = session.getNamedQuery("BuscaMateriaPorID").setInteger("idMateria", idMateria);
         Materia m = (Materia)r.uniqueResult();
-        solicitud.setAlumno(a);
+        //solicitud.setAlumno(a);
         solicitud.setTutor(t);
         solicitud.setMateria(m);
         Asesoria as = new Asesoria();
@@ -58,4 +59,5 @@ public class EnviaSolicitudHelper {
         session.persist(solicitud);
         tx.commit();
     }
+*/
 }
