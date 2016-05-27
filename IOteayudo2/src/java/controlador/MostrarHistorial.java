@@ -51,7 +51,7 @@ public class MostrarHistorial {
      * Método encargado de obtener las solicitadas asociadas a un tutor.
      */
     public void obtenSolicitudesTutor() {
-    //    solicitudes = mhh.getSolicitudesTutor(idUsuario);
+        solicitudes = mhh.getSolicitudesTutor(idUsuario);
     }
 
     public List<Asesoria> getSolicitudes() {

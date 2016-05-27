@@ -16,7 +16,7 @@ import org.hibernate.TransactionException;
  * Clase para enviar solicitudes.
  * @author Manuel Soto Romero
  */
-public class EnviaSolicitudHelper {
+public class ProcesaSolicitudHelper {
     
     /* Para comunicarnos con la base. */
     private final Session session;
@@ -24,7 +24,7 @@ public class EnviaSolicitudHelper {
     /**
      * Constructor por omisión.
      */
-    public EnviaSolicitudHelper() {
+    public ProcesaSolicitudHelper() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
     
@@ -51,6 +51,19 @@ public class EnviaSolicitudHelper {
         asesoria.setTutor(t);
         asesoria.setCosto(260);
         session.persist(asesoria);
+        tx.commit();
+    }
+    
+    /**
+     * Método encargado de procesar la solicitud.
+     * @param idAsesoria
+     */
+    public void aceptaSolicitud(int idAsesoria) {
+        Transaction tx = session.beginTransaction();
+        Query p = session.getNamedQuery("BuscaSolicitudPorID").setInteger("idAsesoria", idAsesoria);
+        Asesoria a = (Asesoria)p.uniqueResult();
+        a.setEstado('a');
+        session.persist(a);
         tx.commit();
     }
 }

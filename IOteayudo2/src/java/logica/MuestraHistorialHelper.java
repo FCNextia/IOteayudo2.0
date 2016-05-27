@@ -46,13 +46,11 @@ public class MuestraHistorialHelper {
      * @throws TransactionException Si hay algún error al realizar la 
      * transacción.
      */
-    /*
-    public List<Solicitud> getSolicitudesTutor(int idUsuario) throws TransactionException {
+    public List<Asesoria> getSolicitudesTutor(int idUsuario) throws TransactionException {
         Transaction tx = session.beginTransaction();
         Query q = session.getNamedQuery("BuscaSolicitudPorIDT").setInteger("idTutor", idUsuario);
-        List<Solicitud> solicitudes = (List<Solicitud>)q.list();
+        List<Asesoria> solicitudes = (List<Asesoria>)q.list();
         tx.commit();
         return solicitudes;
     }
-*/
 }

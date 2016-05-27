@@ -5,12 +5,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import logica.EnviaSolicitudHelper;
-import modelo.Alumno;
+import logica.ProcesaSolicitudHelper;
 import modelo.Asesoria;
-import modelo.Materia;
-//import modelo.Solicitud;
-import modelo.Tutor;
 
 /**
  * Clase para envíar, aceptar y rechazar solicitudes.
@@ -25,7 +21,7 @@ public class ProcesarSolicitudes {
     /* Para mostrar mensajes en la vista. */
     private FacesMessage message;
     /* Lógica para enviar solicitudes. */
-    private EnviaSolicitudHelper esh;
+    private ProcesaSolicitudHelper esh;
     /* Materia a solicitar */
     private static String materia;
     /* Id del tutor a solicitar. */
@@ -44,7 +40,7 @@ public class ProcesarSolicitudes {
      */
     public ProcesarSolicitudes() {
         faceContext = FacesContext.getCurrentInstance();
-        esh = new EnviaSolicitudHelper();
+        esh = new ProcesaSolicitudHelper();
     }
     
     /**
@@ -55,29 +51,42 @@ public class ProcesarSolicitudes {
      * @return Dirección a la página de solicitud.
      */
     public String preparaSolicitud(String materia, int tutor, String nombreTutor) {
-        this.materia = materia;
-        this.tutor = tutor;
+        ProcesarSolicitudes.materia = materia;
+        ProcesarSolicitudes.tutor = tutor;
         this.nombreTutor = nombreTutor;
         return "registroasesoria";
     }
     
-    /**
-     * Método que envía una solicitud.
-     * @param idTutor
-     * @param mmateria
-     * @return String perfil del alumno.
-     */
-    public String enviaSolicitud() {
+    /* Método que crea un objeto asesoria. */
+    private Asesoria creaAsesoria() {
         Asesoria asesoria = new Asesoria();
         asesoria.setEstado('p');
         asesoria.setFecAsesoria(fecha);
         asesoria.setDireccion(direccion);
         asesoria.setComentario(detalles);
+        return asesoria;
+    }
+    
+    /**
+     * Método que envía una solicitud.
+     * @return String perfil del alumno.
+     */
+    public String enviaSolicitud() {
+        Asesoria asesoria = creaAsesoria();
         CerrarSesion cs = new CerrarSesion();
         String mail = cs.getCorreo();
         int idMateria = obtenID(materia);
         esh.guardaAsesoria(asesoria, mail, tutor, idMateria);
         return "perfilalumno";
+    }
+    
+    /**
+     * Método que acepta una solicitud.
+     * @return String de la página de solicitudes.
+     */
+    public String aceptaSolicitud(int idAsesoria) {
+        esh.aceptaSolicitud(idAsesoria);
+        return "historialasesoriastutor";
     }
     
     private int obtenID(String s) {
@@ -112,7 +121,7 @@ public class ProcesarSolicitudes {
     }
 
     public void setMateria(String materia) {
-        this.materia = materia;
+        ProcesarSolicitudes.materia = materia;
     }
 
     public int getTutor() {
@@ -120,7 +129,7 @@ public class ProcesarSolicitudes {
     }
 
     public void setTutor(int tutor) {
-        this.tutor = tutor;
+        ProcesarSolicitudes.tutor = tutor;
     }
 
     public String getNombreTutor() {

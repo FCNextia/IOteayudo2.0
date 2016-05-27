@@ -49,4 +49,9 @@
  	<return alias="Asesoria" class="modelo.Asesoria"/>
  	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and estado like 'p']]>
      </sql-query>
+     
+    <sql-query name="BuscaSolicitudPorID">
+	<return alias="Asesoria" class="modelo.Asesoria"/>
+	<![CDATA[select * from public.asesoria where id_asesoria = :idAsesoria]]>
+    </sql-query>
 </hibernate-mapping>

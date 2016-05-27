@@ -45,7 +45,6 @@ public class IniciarSesion {
         calificacion = 0;
         Usuario usuario = helper.getLoginPorCorreo(getCorreo());
         if (usuario != null) {
-            // TODO(MAPA): Hay que garantizar una mejor forma de validar las contraseñas
             if (getContrasenia().equals(usuario.getContrasenia())) {
                 session.setAttribute("sessionUsuario", correo);
                 session.setAttribute("idUsuario", usuario.getIdUsuario());
