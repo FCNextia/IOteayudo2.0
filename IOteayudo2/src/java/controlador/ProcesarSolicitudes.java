@@ -95,6 +95,16 @@ public class ProcesarSolicitudes {
         return "historialasesoriastutor";
     }
     
+    public String cancelarAsesoriaAlumno(int idAsesoria) {
+        esh.cancelaAsesoria(idAsesoria);
+        return "historialasesoriasalumno";
+    }
+    
+    public String cancelarAsesoriaTutor(int idAsesoria) {
+        esh.cancelaAsesoria(idAsesoria);
+        return "historialasesoriastutor";
+    }
+    
     private int obtenID(String s) {
         if (s == null)
             return -1;

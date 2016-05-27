@@ -61,8 +61,7 @@
           
           <h1>Solicitudes pendientes</h1>
           <h:form>
-              #{mostrarHistorial.obtenSolicitudesAlumno()}
-              <h:dataTable value="#{mostrarHistorial.solicitudes}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesAlumno()}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -100,15 +99,14 @@
               </h:link>
             </h:column>
             <h:column>
-                <h:commandButton value="Cancelar" action="#" class="btn btn-danger"/>             
+                <h:commandButton value="Cancelar" action="#{procesarSolicitudes.cancelarAsesoriaAlumno(solicitud.idAsesoria)}" class="btn btn-danger"/>             
             </h:column>
           </h:dataTable>
           </h:form>
           
           <h1>Asesorías aprobadas</h1>
           <h:form>
-              #{mostrarHistorial.obtenSolicitudesAprobadasAlumno()}
-              <h:dataTable value="#{mostrarHistorial.solicitudes}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesAprobadasAlumno()}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -146,7 +144,7 @@
               </h:link>
             </h:column>
             <h:column>
-                <h:commandButton value="Cancelar" action="#" class="btn btn-danger"/>             
+                <h:commandButton value="Cancelar" action="#{procesarSolicitudes.cancelarAsesoriaAlumno(solicitud.idAsesoria)}" class="btn btn-danger"/>             
             </h:column>
           </h:dataTable>
           </h:form>

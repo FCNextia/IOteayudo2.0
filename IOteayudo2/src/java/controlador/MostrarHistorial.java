@@ -26,7 +26,6 @@ public class MostrarHistorial {
     /* Clase encargada de la lógica. */
     private MuestraHistorialHelper mhh;
     /* Solcitudes pendientes. */
-    private List<Asesoria> solicitudes;
     private final HttpServletRequest httpServletRequest;
     private int idUsuario;
     
@@ -43,12 +42,12 @@ public class MostrarHistorial {
     /**
      * Método encargado de obtener las solicitudes asociadas a un alumno.
      */
-    public void obtenSolicitudesAlumno() {
-        solicitudes = mhh.getSolicitudesAlumno(idUsuario);
+    public List<Asesoria> obtenSolicitudesAlumno() {
+        return mhh.getSolicitudesAlumno(idUsuario);
     }
     
-    public void obtenSolicitudesAprobadasAlumno() {
-        solicitudes = mhh.getSolicitudesAprobadasAlumno(idUsuario);
+    public List<Asesoria> obtenSolicitudesAprobadasAlumno() {
+        return mhh.getSolicitudesAprobadasAlumno(idUsuario);
     }
     
     /**
@@ -61,13 +60,4 @@ public class MostrarHistorial {
     public List<Asesoria> obtenSolicitudesAprobadasTutor() {
         return mhh.getSolicitudesAprobadasTutor(idUsuario);
     }
-
-    public List<Asesoria> getSolicitudes() {
-        return solicitudes;
-    }
-
-    public void setSolicitudes(LinkedList<Asesoria> solicitudes) {
-        this.solicitudes = solicitudes;
-    }
-
 }
