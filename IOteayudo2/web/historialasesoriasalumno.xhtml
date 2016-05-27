@@ -64,18 +64,33 @@
               #{mostrarHistorial.obtenSolicitudesAlumno()}
               <h:dataTable value="#{mostrarHistorial.solicitudes}" var="solicitud" class="table">
             <h:column>
+                <f:facet name="header">Alumno</f:facet>
                 <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
                     <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
               </h:link>
             </h:column>
             <h:column>
+                <f:facet name="header">Tutor</f:facet>
                 <h:link value="#{solicitud.tutor.usuario.nombreUsuario}" outcome="solicitud">
                     <f:param name="nombre_tutor" value="#{solicitud.tutor.usuario.nombreUsuario}"/>
               </h:link>
             </h:column>
             <h:column>
-                <h:link value="#{solicitud.estado}" outcome="solicitud">
-                    <f:param name="estado" value="#{solicitud.estado}"/>
+                <f:facet name="header">Dirección</f:facet>
+                <h:link value="#{solicitud.direccion}" outcome="solicitud">
+                    <f:param name="dirección" value="#{solicitud.direccion}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha</f:facet>
+                <h:link value="#{solicitud.fecAsesoria}" outcome="solicitud">
+                    <f:param name="fecha" value="#{solicitud.fecAsesoria}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Detalles</f:facet>
+                <h:link value="#{solicitud.comentario}" outcome="solicitud">
+                    <f:param name="detalles" value="#{solicitud.comentario}"/>
               </h:link>
             </h:column>
             <h:column>

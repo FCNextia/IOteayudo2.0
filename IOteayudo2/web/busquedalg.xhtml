@@ -60,6 +60,7 @@
           
           
           <h1>Buscar Tutor</h1>
+          <p><h:messages infoStyle="color: blue;list-style:none;"/></p>
           <h:form>
             <div class="input-group">
               
@@ -87,7 +88,7 @@
               </h:link>
             </h:column>
               <h:column>
-                      <h:commandButton value="Solicitar asesoría" action="#{procesarSolicitudes.enviaSolicitud(materia, tutor.idUsuario)}" class="btn btn-warning"/>             
+                  <h:commandButton value="Solicitar asesoría" action="#{procesarSolicitudes.preparaSolicitud(materia, tutor.idUsuario, tutor.nombreUsuario)}" class="btn btn-warning"/>             
                
               </h:column>
           </h:dataTable>

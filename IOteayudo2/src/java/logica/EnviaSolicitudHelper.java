@@ -30,14 +30,13 @@ public class EnviaSolicitudHelper {
     
     /**
      * Método encargado de guardar la solicitud.
-     * @param solicitud Solicitud a guardar.
+     * @param asesoria
      * @param mail Correo del usuario.
      * @param idTutor id del tutor.
      * @param idMateria id de la materia.
      * @throws TransactionException En caso de error durante la transacción.
      */
-    /*
-    public void guardaSolicitud(Solicitud solicitud, String mail, int idTutor, int idMateria) throws TransactionException {
+    public void guardaAsesoria(Asesoria asesoria, String mail, int idTutor, int idMateria) throws TransactionException {
         Transaction tx = session.beginTransaction();
         Query p = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", mail);
         Usuario u = (Usuario)p.uniqueResult();
@@ -47,17 +46,11 @@ public class EnviaSolicitudHelper {
         Tutor t = (Tutor)s.uniqueResult();
         Query r = session.getNamedQuery("BuscaMateriaPorID").setInteger("idMateria", idMateria);
         Materia m = (Materia)r.uniqueResult();
-        //solicitud.setAlumno(a);
-        solicitud.setTutor(t);
-        solicitud.setMateria(m);
-        Asesoria as = new Asesoria();
-        as.setCosto(260);
-        as.setFecAsesoria(new Date());
-        as.setDireccion("Pendiente");
-        solicitud.setAsesoria(as);
-        session.persist(solicitud.getAsesoria());
-        session.persist(solicitud);
+        asesoria.setAlumno(a);
+        asesoria.setMateria(m);
+        asesoria.setTutor(t);
+        asesoria.setCosto(260);
+        session.persist(asesoria);
         tx.commit();
     }
-*/
 }

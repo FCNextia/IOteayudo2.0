@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import logica.MuestraHistorialHelper;
+import modelo.Asesoria;
 //import modelo.Solicitud;
 
 /**
@@ -25,7 +26,7 @@ public class MostrarHistorial {
     /* Clase encargada de la lógica. */
     private MuestraHistorialHelper mhh;
     /* Solcitudes pendientes. */
-    //private List<Solicitud> solicitudes;
+    private List<Asesoria> solicitudes;
     private final HttpServletRequest httpServletRequest;
     private int idUsuario;
     
@@ -43,7 +44,7 @@ public class MostrarHistorial {
      * Método encargado de obtener las solicitudes asociadas a un alumno.
      */
     public void obtenSolicitudesAlumno() {
-    //    solicitudes = mhh.getSolicitudesAlumno(idUsuario);
+        solicitudes = mhh.getSolicitudesAlumno(idUsuario);
     }
     
     /**
@@ -52,13 +53,13 @@ public class MostrarHistorial {
     public void obtenSolicitudesTutor() {
     //    solicitudes = mhh.getSolicitudesTutor(idUsuario);
     }
-/*
-    public List<Solicitud> getSolicitudes() {
+
+    public List<Asesoria> getSolicitudes() {
         return solicitudes;
     }
 
-    public void setSolicitudes(LinkedList<Solicitud> solicitudes) {
+    public void setSolicitudes(LinkedList<Asesoria> solicitudes) {
         this.solicitudes = solicitudes;
     }
-*/
+
 }
