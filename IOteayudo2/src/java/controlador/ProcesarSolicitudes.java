@@ -82,10 +82,16 @@ public class ProcesarSolicitudes {
     
     /**
      * Método que acepta una solicitud.
+     * @param idAsesoria
      * @return String de la página de solicitudes.
      */
     public String aceptaSolicitud(int idAsesoria) {
         esh.aceptaSolicitud(idAsesoria);
+        return "historialasesoriastutor";
+    }
+    
+    public String rechazaSolicitud(int idAsesoria) {
+        esh.rechazaSolicitud(idAsesoria);
         return "historialasesoriastutor";
     }
     

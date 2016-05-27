@@ -61,49 +61,96 @@
           
          <h1>Solicitudes pendientes</h1>
           <h:form>
-              #{mostrarHistorial.obtenSolicitudesTutor()}
-              <h:dataTable value="#{mostrarHistorial.solicitudes}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTutor()}" var="solicitud1" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
-                <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
-                    <f:param name="id" value="#{solicitud.idAsesoria}"/>
+                <h:link value="#{solicitud1.idAsesoria}" outcome="solicitud1">
+                    <f:param name="id" value="#{solicitud1.idAsesoria}"/>
               </h:link>
             </h:column>
                   <h:column>
                 <f:facet name="header">Alumno</f:facet>
-                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
-                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+                <h:link value="#{solicitud1.alumno.usuario.nombreUsuario}" outcome="solicitud1">
+                    <f:param name="nombre_alumno" value="#{solicitud1.alumno.usuario.nombreUsuario}"/>
               </h:link>
             </h:column>
             <h:column>
                 <f:facet name="header">Tutor</f:facet>
-                <h:link value="#{solicitud.tutor.usuario.nombreUsuario}" outcome="solicitud">
-                    <f:param name="nombre_tutor" value="#{solicitud.tutor.usuario.nombreUsuario}"/>
+                <h:link value="#{solicitud1.tutor.usuario.nombreUsuario}" outcome="solicitud1">
+                    <f:param name="nombre_tutor" value="#{solicitud1.tutor.usuario.nombreUsuario}"/>
               </h:link>
             </h:column>
             <h:column>
                 <f:facet name="header">Dirección</f:facet>
-                <h:link value="#{solicitud.direccion}" outcome="solicitud">
-                    <f:param name="dirección" value="#{solicitud.direccion}"/>
+                <h:link value="#{solicitud1.direccion}" outcome="solicitud1">
+                    <f:param name="dirección" value="#{solicitud1.direccion}"/>
               </h:link>
             </h:column>
             <h:column>
                 <f:facet name="header">Fecha</f:facet>
-                <h:link value="#{solicitud.fecAsesoria}" outcome="solicitud">
-                    <f:param name="fecha" value="#{solicitud.fecAsesoria}"/>
+                <h:link value="#{solicitud1.fecAsesoria}" outcome="solicitud1">
+                    <f:param name="fecha" value="#{solicitud1.fecAsesoria}"/>
               </h:link>
             </h:column>
             <h:column>
                 <f:facet name="header">Detalles</f:facet>
-                <h:link value="#{solicitud.comentario}" outcome="solicitud">
-                    <f:param name="detalles" value="#{solicitud.comentario}"/>
+                <h:link value="#{solicitud1.comentario}" outcome="solicitud1">
+                    <f:param name="detalles" value="#{solicitud1.comentario}"/>
               </h:link>
             </h:column>
             <h:column>
-                <h:commandButton value="Aceptar" action="#{procesarSolicitudes.aceptaSolicitud(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+                <h:commandButton value="Aceptar" action="#{procesarSolicitudes.aceptaSolicitud(solicitud1.idAsesoria)}" class="btn btn-danger"/>             
             </h:column>
                   <h:column>
-                <h:commandButton value="Rechazar" action="#" class="btn btn-danger"/>             
+                      <h:commandButton value="Rechazar" action="#{procesarSolicitudes.rechazaSolicitud(solicitud1.idAsesoria)}" class="btn btn-danger"/>             
+            </h:column>
+          </h:dataTable>
+          </h:form>
+         
+         <h1>Asesorías aprobadas</h1>
+          <h:form>
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesAprobadasTutor()}" var="solicitud2" class="table">
+            <h:column>
+                <f:facet name="header">Id solicitud</f:facet>
+                <h:link value="#{solicitud2.idAsesoria}" outcome="solicitud">
+                    <f:param name="id" value="#{solicitud2.idAsesoria}"/>
+              </h:link>
+            </h:column>
+                  <h:column>
+                <f:facet name="header">Alumno</f:facet>
+                <h:link value="#{solicitud2.alumno.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud2.alumno.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tutor</f:facet>
+                <h:link value="#{solicitud2.tutor.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_tutor" value="#{solicitud2.tutor.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dirección</f:facet>
+                <h:link value="#{solicitud2.direccion}" outcome="solicitud">
+                    <f:param name="dirección" value="#{solicitud2.direccion}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha</f:facet>
+                <h:link value="#{solicitud2.fecAsesoria}" outcome="solicitud">
+                    <f:param name="fecha" value="#{solicitud2.fecAsesoria}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Detalles</f:facet>
+                <h:link value="#{solicitud2.comentario}" outcome="solicitud">
+                    <f:param name="detalles" value="#{solicitud2.comentario}"/>
+              </h:link>
+            </h:column>
+                  <h:column>
+                <h:commandButton value="Cancelar" action="#" class="btn btn-danger"/>             
+            </h:column>
+            <h:column>
+                <h:commandButton value="Terminar asesoría" action="#" class="btn btn-danger"/>             
             </h:column>
           </h:dataTable>
           </h:form>

@@ -45,11 +45,18 @@
  	<return alias="Asesoria" class="modelo.Asesoria"/>
  	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and estado like 'p']]>
      </sql-query>
+     <sql-query name="BuscaSolicitudPorIDAA">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and estado like 'a']]>
+     </sql-query>
      <sql-query name="BuscaSolicitudPorIDT">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
  	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and estado like 'p']]>
      </sql-query>
-     
+     <sql-query name="BuscaSolicitudPorIDTA">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and estado like 'a']]>
+     </sql-query>
     <sql-query name="BuscaSolicitudPorID">
 	<return alias="Asesoria" class="modelo.Asesoria"/>
 	<![CDATA[select * from public.asesoria where id_asesoria = :idAsesoria]]>

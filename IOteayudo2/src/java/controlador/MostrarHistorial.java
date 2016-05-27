@@ -47,11 +47,19 @@ public class MostrarHistorial {
         solicitudes = mhh.getSolicitudesAlumno(idUsuario);
     }
     
+    public void obtenSolicitudesAprobadasAlumno() {
+        solicitudes = mhh.getSolicitudesAprobadasAlumno(idUsuario);
+    }
+    
     /**
      * Método encargado de obtener las solicitadas asociadas a un tutor.
      */
-    public void obtenSolicitudesTutor() {
-        solicitudes = mhh.getSolicitudesTutor(idUsuario);
+    public List<Asesoria> obtenSolicitudesTutor() {
+        return mhh.getSolicitudesTutor(idUsuario);
+    }
+    
+    public List<Asesoria> obtenSolicitudesAprobadasTutor() {
+        return mhh.getSolicitudesAprobadasTutor(idUsuario);
     }
 
     public List<Asesoria> getSolicitudes() {
