@@ -148,6 +148,108 @@
             </h:column>
           </h:dataTable>
           </h:form>
+          
+          <h1>Asesorías terminadas</h1>
+          <h:form>
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTerminadasAlumno()}" var="solicitud" class="table">
+            <h:column>
+                <f:facet name="header">Id solicitud</f:facet>
+                <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
+                    <f:param name="id" value="#{solicitud.idAsesoria}"/>
+              </h:link>
+            </h:column>
+                  <h:column>
+                <f:facet name="header">Alumno</f:facet>
+                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tutor</f:facet>
+                <h:link value="#{solicitud.tutor.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_tutor" value="#{solicitud.tutor.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dirección</f:facet>
+                <h:link value="#{solicitud.direccion}" outcome="solicitud">
+                    <f:param name="dirección" value="#{solicitud.direccion}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha</f:facet>
+                <h:link value="#{solicitud.fecAsesoria}" outcome="solicitud">
+                    <f:param name="fecha" value="#{solicitud.fecAsesoria}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Detalles</f:facet>
+                <h:link value="#{solicitud.comentario}" outcome="solicitud">
+                    <f:param name="detalles" value="#{solicitud.comentario}"/>
+              </h:link>
+            </h:column>
+                   <h:column>
+                      <f:facet name="header">Calificación</f:facet>
+                      <h:selectOneMenu value="#{calificarUsuario.calificacion}">
+                          <f:selectItem itemValue="1" itemLabel="1"/>
+                          <f:selectItem itemValue="2" itemLabel="2"/>
+                          <f:selectItem itemValue="3" itemLabel="3"/>
+                          <f:selectItem itemValue="4" itemLabel="4"/>
+                          <f:selectItem itemValue="5" itemLabel="5"/>
+                      </h:selectOneMenu>
+                  </h:column>
+            <h:column>
+                <h:commandButton value="Calificar" action="#{calificarUsuario.calificaTutor(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+            </h:column>
+          </h:dataTable>
+          </h:form>
+          
+           <h:form>
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesCalificadasAlumno()}" var="solicitud" class="table">
+            <h:column>
+                <f:facet name="header">Id solicitud</f:facet>
+                <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
+                    <f:param name="id" value="#{solicitud.idAsesoria}"/>
+              </h:link>
+            </h:column>
+                  <h:column>
+                <f:facet name="header">Alumno</f:facet>
+                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tutor</f:facet>
+                <h:link value="#{solicitud.tutor.usuario.nombreUsuario}" outcome="solicitud">
+                    <f:param name="nombre_tutor" value="#{solicitud.tutor.usuario.nombreUsuario}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Dirección</f:facet>
+                <h:link value="#{solicitud.direccion}" outcome="solicitud">
+                    <f:param name="dirección" value="#{solicitud.direccion}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha</f:facet>
+                <h:link value="#{solicitud.fecAsesoria}" outcome="solicitud">
+                    <f:param name="fecha" value="#{solicitud.fecAsesoria}"/>
+              </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Detalles</f:facet>
+                <h:link value="#{solicitud.comentario}" outcome="solicitud">
+                    <f:param name="detalles" value="#{solicitud.comentario}"/>
+              </h:link>
+            </h:column>
+                  <h:column>
+                <f:facet name="header">Calificación</f:facet>
+                <h:link value="#{solicitud.calificacionTutor}" outcome="solicitud">
+                    <f:param name="calift" value="#{solicitud.calificacionTutor}"/>
+              </h:link>
+            </h:column>
+          </h:dataTable>
+          </h:form>
         </div>
       </div>
     </div>

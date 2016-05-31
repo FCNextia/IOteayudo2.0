@@ -1,10 +1,8 @@
 package logica;
 
-import java.util.Date;
 import modelo.Alumno;
 import modelo.Asesoria;
 import modelo.Materia;
-//import modelo.Solicitud;
 import modelo.Tutor;
 import modelo.Usuario;
 import org.hibernate.Query;
@@ -81,6 +79,15 @@ public class ProcesaSolicitudHelper {
         Query p = session.getNamedQuery("BuscaSolicitudPorID").setInteger("idAsesoria", idAsesoria);
         Asesoria a = (Asesoria)p.uniqueResult();
         a.setEstado('c');
+        session.persist(a);
+        tx.commit();
+    }
+    
+    public void terminaAsesoria(int idAsesoria) {
+        Transaction tx = session.beginTransaction();
+        Query p = session.getNamedQuery("BuscaSolicitudPorID").setInteger("idAsesoria", idAsesoria);
+        Asesoria a = (Asesoria)p.uniqueResult();
+        a.setEstado('t');
         session.persist(a);
         tx.commit();
     }

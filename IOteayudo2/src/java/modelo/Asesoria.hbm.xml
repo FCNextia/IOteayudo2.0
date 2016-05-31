@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/05/2016 04:28:38 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/05/2016 09:56:52 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelo.Asesoria" table="asesoria" schema="public" optimistic-lock="version">
         <id name="idAsesoria" type="int">
@@ -41,13 +41,21 @@
             <column name="estado" length="1" not-null="true" />
         </property>
     </class>
-     <sql-query name="BuscaSolicitudPorIDA">
+    <sql-query name="BuscaSolicitudPorIDA">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
  	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and estado like 'p']]>
      </sql-query>
      <sql-query name="BuscaSolicitudPorIDAA">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
  	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and estado like 'a']]>
+     </sql-query>
+     <sql-query name="BuscaSolicitudPorIDAT">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and (estado like 't' or estado like 'm')]]>
+     </sql-query>
+     <sql-query name="BuscaSolicitudPorIDCA">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and (estado like 'c' or  estado like 'n')]]>
      </sql-query>
      <sql-query name="BuscaSolicitudPorIDT">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
@@ -61,4 +69,12 @@
 	<return alias="Asesoria" class="modelo.Asesoria"/>
 	<![CDATA[select * from public.asesoria where id_asesoria = :idAsesoria]]>
     </sql-query>
+    <sql-query name="BuscaSolicitudPorIDTT">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and (estado like 't' or estado like 'n')]]>
+     </sql-query>
+     <sql-query name="BuscaSolicitudPorIDCT">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and (estado like 'c' or  estado like 'm')]]>
+     </sql-query>
 </hibernate-mapping>

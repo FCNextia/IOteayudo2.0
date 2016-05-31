@@ -105,6 +105,11 @@ public class ProcesarSolicitudes {
         return "historialasesoriastutor";
     }
     
+    public String terminaAsesoriaTutor(int idAsesoria) {
+        esh.terminaAsesoria(idAsesoria);
+        return "historialasesoriastutor";
+    }
+    
     private int obtenID(String s) {
         if (s == null)
             return -1;

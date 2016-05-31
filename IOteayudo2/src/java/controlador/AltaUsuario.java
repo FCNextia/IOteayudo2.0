@@ -94,6 +94,8 @@ public class AltaUsuario {
         usuario.setCorreo(correo);
         usuario.setTelefono(new Long(0));
         usuario.setAcercaDe("vacío");
+        usuario.setAsesorias(0);
+        usuario.setCalificacion(0);
         return usuario;
     }
 

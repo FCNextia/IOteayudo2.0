@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/05/2016 04:28:38 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/05/2016 09:56:52 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelo.TutorMateria" table="tutor_materia" schema="public" optimistic-lock="version">
         <comment>El tutor ID_USUARIO imparte la materia ID_MATERIA</comment>
