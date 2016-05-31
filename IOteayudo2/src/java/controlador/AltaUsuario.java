@@ -106,6 +106,11 @@ public class AltaUsuario {
      * usuario, en caso contrario a la página de registro.
      */
     public String darDeAltaUsuario() {
+        if (!validaNombre()) {
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nombre o apellidos inválidos", null);
+            faceContext.addMessage(null, message);
+            return "registro";
+        }
         if (getContrasenia().equals(getConfirmacion())) {
             try {
                 Usuario usuario = nuevoUsuario();
@@ -115,9 +120,8 @@ public class AltaUsuario {
                     rh.registraUsuarioTutor(usuario);
                 }
                 return "pantallainicial";
-            } catch (TransactionException tx) {
-                // TODO: Hay que ser más especificos con el tipo de error mostrado. (MAPA)
-                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Datos incorrectos", null);
+            } catch (Exception e) {
+                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correo inválido", null);
                 faceContext.addMessage(null, message);
                 return "registro";
             }
@@ -125,6 +129,20 @@ public class AltaUsuario {
         message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contraseñas no coinciden", null);
         faceContext.addMessage(null, message);
         return "registro";
+    }
+    
+    private boolean validaNombre() {
+        return sonLetras(nombre) && sonLetras(apellidop) && sonLetras(apellidom); 
+    }
+    
+    private boolean sonLetras(String cadena) {
+        cadena = cadena.replace(" ", "");
+        for (int i = 0; i < cadena.length(); i++) {
+            char c = cadena.charAt(i);
+            if (!Character.isLetter(c))
+                return false;
+        }
+        return true;
     }
 
     /**
