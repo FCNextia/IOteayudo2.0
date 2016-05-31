@@ -27,11 +27,12 @@ public class IniciarSesion {
     private final HttpSession session;
     private final FacesContext faceContext; // Obtiene información de la aplicación
     private FacesMessage message; // Permite el envio de mensajes entre el bean y la vista
-    private String correo;
+    private static String correo;
     private String nombre;
     private String nombreYApp;
     private String contrasenia;
     private int calificacion;
+    private String acercaDe;
     private final HttpServletRequest httpServletRequest;
 
     public IniciarSesion() {
@@ -53,6 +54,7 @@ public class IniciarSesion {
                 String nombreC = usuario.getNombreUsuario() + " " +  usuario.getApp() + " " + usuario.getApm();
                 session.setAttribute("nombre", nombreC);
                 session.setAttribute("calificacion", usuario.getCalificacion());
+                session.setAttribute("acercade", usuario.getAcercaDe());
                 if (usuario.getAlumno() != null)
                     return "perfilalumno";
                 if (usuario.getTutor() != null)
@@ -101,7 +103,7 @@ public class IniciarSesion {
     }
 
     public int getCalificacion() {
-        return 1;
+        return Integer.parseInt(httpServletRequest.getSession().getAttribute("calificacion").toString());
     }
 
     public void setCalificacion(int calificacion) {
@@ -110,5 +112,13 @@ public class IniciarSesion {
     
     public int getIDUsuario() {
         return Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString());
+    }
+
+    public String getAcercaDe() {
+        return httpServletRequest.getSession().getAttribute("acercade").toString();
+    }
+
+    public void setAcercaDe(String acercaDe) {
+        this.acercaDe = acercaDe;
     }
 }

@@ -36,11 +36,15 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{cerrarSesion.correo}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Perfil</a></li>
+            <li><h:link value="Perfil" outcome="perfiltutor"/></li>
             <li><h:link value="Configuración" outcome="configuraciontutor"/></li>
             <li><h:link value="Historial Asesorias" outcome="historialasesoriastutor"/></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Cerrar sesión</a></li>
+            <li>
+                <h:form>
+                    <h:commandButton value="Cerrar sesión" action="#{cerrarSesion.cerrarSession()}" class="btn btn-warning"/>             
+                </h:form>
+            </li>
           </ul>
         </li>
       </ul>
@@ -97,7 +101,7 @@
           </h4>
         </div>
         <div class="col-md-3">
-          <h2 class="text-center">$50 MXN por hora</h2>
+          <h2 class="text-center">$260 MXN por hora</h2>
           <br></br>
           <h:link value="Historial de solicitudes" outcome="historialasesoriastutor.xhtml" class="btn btn-success btn-lg btn-block"/>
         </div>
@@ -105,7 +109,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Acerca de #{iniciarSesion.nombre}:</h2>
-                <p>Aqui pegado va acercaDe</p>
+                <p>#{iniciarSesion.acercaDe}</p>
                 
             </div>
         </div>

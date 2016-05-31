@@ -28,7 +28,7 @@ CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como información
 adicional ACERCA_DE_USUARIO.';
 
 CREATE TABLE alumno (
-	id_usuario integer PRIMARY KEY REFERENCES usuario(id_usuario),
+	id_usuario integer PRIMARY KEY REFERENCES usuario(id_usuario) ON DELETE CASCADE,
 	fec_nac date NOT NULL CHECK( date_part('year',age(fec_nac)) >= 15 )
 );
 
@@ -40,7 +40,7 @@ FECHA_NACIMIENTO_ALUMNO.';
 --Con respecto al problema de los tutores, bastaba con quitarle
 --la nularidad a la columna nivel_estudios_tutor
 CREATE TABLE tutor (
-	id_usuario integer PRIMARY KEY REFERENCES usuario(id_usuario),
+	id_usuario integer PRIMARY KEY REFERENCES usuario(id_usuario) ON DELETE CASCADE,
 	nivel_estudio text 
 );
 
@@ -71,8 +71,8 @@ VALUES (1, 'Matemáticas', 1),
 	   (9, 'Derecho', 3);
 
 CREATE TABLE tutor_materia (
-	id_usuario integer NOT NULL REFERENCES tutor(id_usuario),
-	id_materia integer NOT NULL REFERENCES materia(id_materia)
+	id_usuario integer NOT NULL REFERENCES tutor(id_usuario) ON DELETE CASCADE,
+	id_materia integer NOT NULL REFERENCES materia(id_materia) ON DELETE CASCADE
 );
 
 comment on table tutor_materia
@@ -81,9 +81,9 @@ is
 
 CREATE TABLE asesoria(
 	id_asesoria serial PRIMARY KEY,
-	id_tutor integer NOT NULL REFERENCES tutor(id_usuario),
-	id_alumno integer NOT NULL REFERENCES alumno(id_usuario),
-	id_materia integer NOT NULL REFERENCES materia(id_materia),
+	id_tutor integer NOT NULL REFERENCES tutor(id_usuario) ON DELETE CASCADE,
+	id_alumno integer NOT NULL REFERENCES alumno(id_usuario) ON DELETE CASCADE,
+	id_materia integer NOT NULL REFERENCES materia(id_materia) ON DELETE CASCADE,
 	costo integer NOT NULL,
 	fec_asesoria date NOT NULL,
 	direccion varchar NOT NULL,

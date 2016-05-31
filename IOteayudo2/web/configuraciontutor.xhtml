@@ -36,10 +36,14 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{cerrarSesion.correo}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Perfil</a></li>
+            <li><h:link value="Perfil" outcome="perfiltutor"/></li>
             <li><h:link value="Configuración" outcome="configuraciontutor"/></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Cerrar sesión</a></li>
+            <li>
+                <h:form>
+                    <h:commandButton value="Cerrar sesión" action="#{cerrarSesion.cerrarSession()}" class="btn btn-warning"/>             
+                </h:form>
+            </li>
           </ul>
         </li>
       </ul>
@@ -101,11 +105,12 @@
                     <p><h:inputTextarea pt:placeholder="Acerca de ti: " value="#{actualizarDatosTutor.acercaDeMi}" class="form-control"/></p>
                     <br/>
                     <h:commandButton value="Actualizar Datos" action="#{actualizarDatosTutor.actualizarDatos()}" class="btn btn-lg btn-primary btn-block"/>
+                    <br></br>
+                    <h:commandButton value="Dar de baja" action="#{bajaUsuario.darBaja()}" class="btn btn-primary btn-lg btn-block "/>
                 </div>
             </div>
             
         </h:form>
-        <p><h:link value="Dar de baja" outcome="configuraciontutor" class="btn btn-lg btn-danger" /></p>
     </div>
 </div>
 </div>

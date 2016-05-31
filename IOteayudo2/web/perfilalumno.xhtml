@@ -36,7 +36,7 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{cerrarSesion.correo}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Perfil</a></li>
+            <li><h:link value="Perfil" outcome="perfilalumno"/></li>
             <li><h:link value="Historial de asesorías" outcome="historialasesoriasalumno"/></li>
             <li><h:link value="Configuración" outcome="configuracionalumno"/></li>
             <li role="separator" class="divider"></li>
@@ -63,8 +63,6 @@
         </div>
         <div class="col-md-6">
             <h1>#{iniciarSesion.nombre}</h1>
-          <h3>Escolaridad actual</h3>
-          <h4>Ayudado recientemente en: (Asesorías recientes)</h4>
           <h4>Calificación: 
           <!-- switch(calificacion)
           case: 1 -->
@@ -99,7 +97,6 @@
           </h4>
         </div>
         <div class="col-md-3">
-          <h2 class="text-center">¿Qué asesorías he tomado?</h2>
           <br></br>
           <h:link value="Historial de asesorías" outcome="historialasesoriasalumno.xhtml" class="btn btn-success btn-lg btn-block"/>
         </div>
@@ -107,7 +104,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Acerca de #{iniciarSesion.nombre}:</h2>
-                <p>Aqui pegado va acercaDe</p>
+                <p>#{iniciarSesion.acercaDe}</p>
                 
             </div>
         </div>

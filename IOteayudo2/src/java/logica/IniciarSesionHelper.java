@@ -17,7 +17,6 @@ import modelo.Usuario;
 public class IniciarSesionHelper {
 
     private final Session session;
-    private Transaction tx;
 
     /**
      * Constructor para iniciar la sesión de Hibernate.
@@ -34,7 +33,7 @@ public class IniciarSesionHelper {
      * @return El usuario si existe.
      */
     public Usuario getLoginPorCorreo(String correo) {
-        tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         Query q = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", correo);
         Usuario usuario = (Usuario) q.uniqueResult();
         tx.commit();
@@ -50,7 +49,7 @@ public class IniciarSesionHelper {
      * contrario.
      */
     public boolean esAlumno(int id) {
-        tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         Query q = session.getNamedQuery("BuscaAlumnoPorID").setInteger("idUsuario", id);
         Alumno a = (Alumno) q.uniqueResult();
         tx.commit();
@@ -67,7 +66,7 @@ public class IniciarSesionHelper {
      * contrario.
      */
     public boolean esTutor(int id) {
-        tx = session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         Query q = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", id);
         Tutor t = (Tutor) q.uniqueResult();
         tx.commit();
