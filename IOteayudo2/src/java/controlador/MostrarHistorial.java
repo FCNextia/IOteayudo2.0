@@ -68,4 +68,8 @@ public class MostrarHistorial {
     public List<Asesoria> obtenSolicitudesTerminadasTutor() {
         return mhh.getSolicitudesTerminadasTutor(idUsuario);
     }
+    
+    public List<Asesoria> obtenSolicitudesCalificadasTutor() {
+        return mhh.getSolicitudesCalificadasTutor(idUsuario);
+    }
 }

@@ -17,7 +17,7 @@ CREATE TABLE usuario (
 	telefono bigint CHECK(telefono <= 9999999999),
 	acerca_de varchar(255),
 	calificacion integer,
-	asesorias integer CHECK(asesorias <= 0)
+	asesorias integer CHECK(asesorias >= 0)
 );
 
 comment on table usuario

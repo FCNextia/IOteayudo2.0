@@ -1,10 +1,8 @@
 package logica;
 
-import java.util.Date;
 import modelo.Alumno;
 import modelo.Asesoria;
 import modelo.Materia;
-//import modelo.Solicitud;
 import modelo.Tutor;
 import modelo.Usuario;
 import org.hibernate.Query;
