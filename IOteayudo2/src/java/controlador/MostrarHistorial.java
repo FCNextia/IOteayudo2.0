@@ -50,6 +50,10 @@ public class MostrarHistorial {
         return mhh.getSolicitudesAprobadasAlumno(idUsuario);
     }
     
+    public List<Asesoria> obtenSolicitudesTerminadasAlumno() {
+        return mhh.getSolicitudesTerminadasAlumno(idUsuario);
+    }
+    
     /**
      * Método encargado de obtener las solicitadas asociadas a un tutor.
      */
@@ -59,5 +63,9 @@ public class MostrarHistorial {
     
     public List<Asesoria> obtenSolicitudesAprobadasTutor() {
         return mhh.getSolicitudesAprobadasTutor(idUsuario);
+    }
+    
+    public List<Asesoria> obtenSolicitudesTerminadasTutor() {
+        return mhh.getSolicitudesTerminadasTutor(idUsuario);
     }
 }

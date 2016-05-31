@@ -84,4 +84,13 @@ public class ProcesaSolicitudHelper {
         session.persist(a);
         tx.commit();
     }
+    
+    public void terminaAsesoria(int idAsesoria) {
+        Transaction tx = session.beginTransaction();
+        Query p = session.getNamedQuery("BuscaSolicitudPorID").setInteger("idAsesoria", idAsesoria);
+        Asesoria a = (Asesoria)p.uniqueResult();
+        a.setEstado('t');
+        session.persist(a);
+        tx.commit();
+    }
 }

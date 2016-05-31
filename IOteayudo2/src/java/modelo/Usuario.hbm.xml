@@ -8,7 +8,9 @@
         CONTRASENIA_USUARIO y telefono TELEFONO_USUARIO teniendo como informaci&#195;&#179;n adicional ACERCA_DE_USUARIO.</comment>
         <id name="idUsuario" type="int">
             <column name="id_usuario" />
-            <generator class="assigned" />
+            <generator class="sequence">
+                <param name="sequence">usuario_id_usuario_seq</param>
+            </generator>
         </id>
         <property name="correo" type="string">
             <column name="correo" not-null="true" unique="true" />

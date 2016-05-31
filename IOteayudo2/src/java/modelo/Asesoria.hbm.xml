@@ -6,7 +6,9 @@
     <class name="modelo.Asesoria" table="asesoria" schema="public" optimistic-lock="version">
         <id name="idAsesoria" type="int">
             <column name="id_asesoria" />
-            <generator class="assigned" />
+            <generator class="sequence" >
+                <param name="sequence">asesoria_id_asesoria_seq</param>
+            </generator>
         </id>
         <many-to-one name="alumno" class="modelo.Alumno" fetch="select">
             <column name="id_alumno" not-null="true" />
@@ -47,6 +49,10 @@
  	<return alias="Asesoria" class="modelo.Asesoria"/>
  	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and estado like 'a']]>
      </sql-query>
+     <sql-query name="BuscaSolicitudPorIDAT">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and estado like 't']]>
+     </sql-query>
      <sql-query name="BuscaSolicitudPorIDT">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
  	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and estado like 'p']]>
@@ -59,4 +65,8 @@
 	<return alias="Asesoria" class="modelo.Asesoria"/>
 	<![CDATA[select * from public.asesoria where id_asesoria = :idAsesoria]]>
     </sql-query>
+    <sql-query name="BuscaSolicitudPorIDTT">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_tutor = :idAlumno and estado like 't']]>
+     </sql-query>
 </hibernate-mapping>
