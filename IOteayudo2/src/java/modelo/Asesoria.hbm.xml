@@ -51,7 +51,11 @@
      </sql-query>
      <sql-query name="BuscaSolicitudPorIDAT">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
- 	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and estado like 't']]>
+ 	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and (estado like 't' or estado like 'm')]]>
+     </sql-query>
+     <sql-query name="BuscaSolicitudPorIDCA">
+ 	<return alias="Asesoria" class="modelo.Asesoria"/>
+ 	<![CDATA[select * from public.asesoria where id_alumno = :idAlumno and (estado like 'c' or  estado like 'n')]]>
      </sql-query>
      <sql-query name="BuscaSolicitudPorIDT">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
@@ -67,10 +71,10 @@
     </sql-query>
     <sql-query name="BuscaSolicitudPorIDTT">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
- 	<![CDATA[select * from public.asesoria where id_tutor = :idAlumno and estado like 't']]>
+ 	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and (estado like 't' or estado like 'n')]]>
      </sql-query>
      <sql-query name="BuscaSolicitudPorIDCT">
  	<return alias="Asesoria" class="modelo.Asesoria"/>
- 	<![CDATA[select * from public.asesoria where id_tutor = :idAlumno and estado like 'c']]>
+ 	<![CDATA[select * from public.asesoria where id_tutor = :idTutor and (estado like 'c' or  estado like 'm')]]>
      </sql-query>
 </hibernate-mapping>

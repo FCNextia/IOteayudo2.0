@@ -55,6 +55,14 @@ public class MuestraHistorialHelper {
         return solicitudes;
     }
     
+    public List<Asesoria> getSolicitudesCalificadasAlumno(int idUsuario) throws TransactionException {
+        Transaction tx = session.beginTransaction();
+        Query q = session.getNamedQuery("BuscaSolicitudPorIDCA").setInteger("idAlumno", idUsuario);
+        List<Asesoria> solicitudes = (List<Asesoria>)q.list();
+        tx.commit();
+        return solicitudes;
+    }
+    
     /**
      * Método para obtener la lista de solicitudes asociadas al usuario.
      * @param idUsuario Usuario a buscar.
@@ -80,7 +88,7 @@ public class MuestraHistorialHelper {
     
     public List<Asesoria> getSolicitudesTerminadasTutor(int idUsuario) throws TransactionException {
         Transaction tx = session.beginTransaction();
-        Query q = session.getNamedQuery("BuscaSolicitudPorIDTT").setInteger("idAlumno", idUsuario);
+        Query q = session.getNamedQuery("BuscaSolicitudPorIDTT").setInteger("idTutor", idUsuario);
         List<Asesoria> solicitudes = (List<Asesoria>)q.list();
         tx.commit();
         return solicitudes;
@@ -88,7 +96,7 @@ public class MuestraHistorialHelper {
     
     public List<Asesoria> getSolicitudesCalificadasTutor(int idUsuario) throws TransactionException {
         Transaction tx = session.beginTransaction();
-        Query q = session.getNamedQuery("BuscaSolicitudPorIDCT").setInteger("idAlumno", idUsuario);
+        Query q = session.getNamedQuery("BuscaSolicitudPorIDCT").setInteger("idTutor", idUsuario);
         List<Asesoria> solicitudes = (List<Asesoria>)q.list();
         tx.commit();
         return solicitudes;

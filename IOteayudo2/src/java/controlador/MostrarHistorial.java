@@ -54,6 +54,10 @@ public class MostrarHistorial {
         return mhh.getSolicitudesTerminadasAlumno(idUsuario);
     }
     
+    public List<Asesoria> obtenSolicitudesCalificadasAlumno() {
+        return mhh.getSolicitudesCalificadasAlumno(idUsuario);
+    }
+    
     /**
      * Método encargado de obtener las solicitadas asociadas a un tutor.
      */

@@ -23,7 +23,11 @@ public class CalificaUsuarioHelper {
         Transaction tx = session.beginTransaction();
         Query q = session.getNamedQuery("BuscaSolicitudPorID").setInteger("idAsesoria", idAsesoria);
         Asesoria a = (Asesoria)q.uniqueResult();
-        a.setEstado('c');
+        char estado = a.getEstado();
+        if (estado == 't') // no ha calificado nadie
+            a.setEstado('m');
+        if (estado == 'n') // ya calificó el alumno
+            a.setEstado('c');
         a.setCalificacionAlumno(calificacion);
         Usuario u = a.getAlumno().getUsuario();
         u.setAsesorias(u.getAsesorias() + 1);
@@ -33,11 +37,20 @@ public class CalificaUsuarioHelper {
         tx.commit();
     }
     
-    public void rechazaSolicitud(int idAsesoria) {
+    public void calificaTutor(int idAsesoria, int calificacion) {
         Transaction tx = session.beginTransaction();
-        Query p = session.getNamedQuery("BuscaSolicitudPorID").setInteger("idAsesoria", idAsesoria);
-        Asesoria a = (Asesoria)p.uniqueResult();
-        a.setEstado('r');
+        Query q = session.getNamedQuery("BuscaSolicitudPorID").setInteger("idAsesoria", idAsesoria);
+        Asesoria a = (Asesoria)q.uniqueResult();
+        char estado = a.getEstado();
+        if (estado == 't') // no ha calificado el tutor
+            a.setEstado('n');
+        if (estado == 'm') // ya calificaron los dos
+            a.setEstado('c');
+        a.setCalificacionTutor(calificacion);
+        Usuario u = a.getTutor().getUsuario();
+        u.setAsesorias(u.getAsesorias() + 1);
+        u.setCalificacion((u.getCalificacion() + calificacion)/u.getAsesorias());
+        session.persist(u);
         session.persist(a);
         tx.commit();
     }

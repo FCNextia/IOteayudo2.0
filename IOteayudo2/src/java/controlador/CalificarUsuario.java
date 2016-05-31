@@ -32,6 +32,11 @@ public class CalificarUsuario {
         cuh.calificaAlumno(idAsesoria, calificacion);
         return "historialasesoriastutor";
     }
+    
+    public String calificaTutor(int idAsesoria) {
+        cuh.calificaTutor(idAsesoria, calificacion);
+        return "historialasesoriasalumno";
+    }
 
     public int getCalificacion() {
         return calificacion;
