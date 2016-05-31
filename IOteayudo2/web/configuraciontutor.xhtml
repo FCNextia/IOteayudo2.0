@@ -101,7 +101,16 @@
                 <div class="col-md-6">
                     <p><h:inputSecret pt:placeholder="Contraseña: " value="#{actualizarDatosTutor.contrasenia}" class="form-control"/></p>
                     <p><h:inputSecret pt:placeholder="Confirma tu contraseña: " value="#{actualizarDatosTutor.confirmacion}" class="form-control"/></p>
-
+                    <br></br>
+                    <p><b>Nivel de estudios</b></p>
+                    <h:selectOneMenu value="#{actualizarDatosTutor.escolaridad}">
+                          <f:selectItem itemValue="Bachillerato" itemLabel="Bachillerato"/>
+                          <f:selectItem itemValue="Licenciatura" itemLabel="Licenciatura"/>
+                          <f:selectItem itemValue="Maestría" itemLabel="Maestría"/>
+                          <f:selectItem itemValue="Doctorado" itemLabel="Doctorado"/>
+                      </h:selectOneMenu>
+                    <br></br>
+                    <br></br>
                     <p><h:inputTextarea pt:placeholder="Acerca de ti: " value="#{actualizarDatosTutor.acercaDeMi}" class="form-control"/></p>
                     <br/>
                     <h:commandButton value="Actualizar Datos" action="#{actualizarDatosTutor.actualizarDatos()}" class="btn btn-lg btn-primary btn-block"/>

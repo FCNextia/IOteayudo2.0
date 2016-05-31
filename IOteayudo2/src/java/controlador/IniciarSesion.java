@@ -34,6 +34,7 @@ public class IniciarSesion {
     private int calificacion;
     private String acercaDe;
     private final HttpServletRequest httpServletRequest;
+    public static int idUsuario;
 
     public IniciarSesion() {
         faceContext = FacesContext.getCurrentInstance();
@@ -111,7 +112,7 @@ public class IniciarSesion {
     }    
     
     public int getIDUsuario() {
-        return Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString());
+        return idUsuario;
     }
 
     public String getAcercaDe() {
