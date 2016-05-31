@@ -1,5 +1,5 @@
 package modelo;
-// Generated 26/05/2016 04:28:37 PM by Hibernate Tools 4.3.1
+// Generated 30/05/2016 09:56:51 PM by Hibernate Tools 4.3.1
 
 
 
@@ -18,6 +18,7 @@ public class Usuario  implements java.io.Serializable {
      private Long telefono;
      private String acercaDe;
      private Integer calificacion;
+     private Integer asesorias;
      private Alumno alumno;
      private Tutor tutor;
 
@@ -33,7 +34,7 @@ public class Usuario  implements java.io.Serializable {
         this.apm = apm;
         this.contrasenia = contrasenia;
     }
-    public Usuario(int idUsuario, String correo, String nombreUsuario, String app, String apm, String contrasenia, Long telefono, String acercaDe, Integer calificacion, Alumno alumno, Tutor tutor) {
+    public Usuario(int idUsuario, String correo, String nombreUsuario, String app, String apm, String contrasenia, Long telefono, String acercaDe, Integer calificacion, Integer asesorias, Alumno alumno, Tutor tutor) {
        this.idUsuario = idUsuario;
        this.correo = correo;
        this.nombreUsuario = nombreUsuario;
@@ -43,6 +44,7 @@ public class Usuario  implements java.io.Serializable {
        this.telefono = telefono;
        this.acercaDe = acercaDe;
        this.calificacion = calificacion;
+       this.asesorias = asesorias;
        this.alumno = alumno;
        this.tutor = tutor;
     }
@@ -109,6 +111,13 @@ public class Usuario  implements java.io.Serializable {
     
     public void setCalificacion(Integer calificacion) {
         this.calificacion = calificacion;
+    }
+    public Integer getAsesorias() {
+        return this.asesorias;
+    }
+    
+    public void setAsesorias(Integer asesorias) {
+        this.asesorias = asesorias;
     }
     public Alumno getAlumno() {
         return this.alumno;
