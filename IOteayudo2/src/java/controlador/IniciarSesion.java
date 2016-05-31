@@ -53,22 +53,18 @@ public class IniciarSesion {
                 String nombreC = usuario.getNombreUsuario() + " " +  usuario.getApp() + " " + usuario.getApm();
                 session.setAttribute("nombre", nombreC);
                 session.setAttribute("calificacion", usuario.getCalificacion());
-                if (usuario.getAlumno() != null) {
+                if (usuario.getAlumno() != null)
                     return "perfilalumno";
-                }
-                if (usuario.getTutor() != null) {
+                if (usuario.getTutor() != null)
                     return "perfiltutor";
-                } else {
-                    // Esto está raro, ¿hay algún caso donde no sea ni tutor ni alumno?
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no encontrado.", null);
-                    faceContext.addMessage(null, message);
-                }
             } else {
-                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contraseña incorrecto", null);
                 faceContext.addMessage(null, message);
                 return "iniciosesion";
             }
         }
+        message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no registrado.", null);
+        faceContext.addMessage(null, message);
         return "iniciosesion";
     }
 
