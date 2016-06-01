@@ -1,73 +1,40 @@
 package controlador;
 
-import org.hibernate.TransactionException;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
 import logica.RegistroHelper;
 import modelo.Usuario;
 
 /**
  * Controlador que permite agregar un usuario a la base de datos.
- *
- * @author
- * @version 1.0
  */
 @ManagedBean
 @RequestScoped
 public class AltaUsuario {
 
-    /*
-     * DATOS SUFICIENTES PARA DAR DE ALTA A UN USUARIO.
-     */
-
-    /*
-     * ID del usuario.
-     */
+    /* Id del usuario a registrar. */
     private int id;
-    /*
-     * Correo electrónico del usuario.
-     */
+    /* Correo electrónico del usuario a registrar. */
     private String correo;
-    /*
-     * Contraseña del usuario.
-     */
+    /* Contraseña del usuario a registrar. */
     private String contrasenia;
-    /*
-     * Confirmación de la contraseña.
-     */
+    /* Confirmación de la contraseña */
     private String confirmacion;
-    /*
-     * Nombre del usuario.
-     */
+    /* Nombre del usuario a registrar. */
     private String nombre;
-    /*
-     * Apellido paterno del usuario.
-     */
+    /* Apellido paterno del usuario a registrar. */
     private String apellidop;
-    /*
-     * Apellido materno del usario.
-     */
+    /* Apellido materno del usuario a registrar. */
     private String apellidom;
-    /*
-     * Nos indica si es alumno o tutor.
-     */
-    private boolean esAlumno;
-    /*
-     * Nos indica si es alumno o tutor.
-     */
+    /* Nos indica si el usuario a registrar es tutor o no. */
     private boolean esTutor;
-    /*
-     * Obtiene información de la aplicación.
-     */
+    /* Obtiene información de la aplicación. */
     private final FacesContext faceContext;
-    /*
-     * Permite el envio de mensajes entre el bean y la vista.
-     */
+    /* Permite el envío de mensajes entre el bean y la vista. */
     private FacesMessage message;
+    /* Lógica que permitirá la conexión con la base de datos. */
     private final RegistroHelper rh;
 
     /**
@@ -82,7 +49,6 @@ public class AltaUsuario {
     /**
      * Construye un usuario con la información recibida por el
      * formulario.
-     *
      * @return Un nuevo usuario.
      */
     private Usuario nuevoUsuario() {
@@ -101,41 +67,54 @@ public class AltaUsuario {
 
     /**
      * Da de alta al usuario/alumno y lo redirige a su perfil.
-     *
      * @return La página de inicio si se creo correctamente el
      * usuario, en caso contrario a la página de registro.
      */
     public String darDeAltaUsuario() {
+        /* Validamos el nombre y apellidos para que no contengan números o 
+           caracteres extraños. */
         if (!validaNombre()) {
-            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nombre o apellidos inválidos", null);
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                    "Nombre o apellidos inválidos", null);
             faceContext.addMessage(null, message);
             return "registro";
         }
+        /* Validamos que la contraseña y la confirmación sean iguales. */
         if (getContrasenia().equals(getConfirmacion())) {
             try {
+                // construimos el nuevo usuario
                 Usuario usuario = nuevoUsuario();
-                if (!esTutor) {
+                if (!esTutor)
                     rh.registraUsuarioAlumno(usuario);
-                } else {
+                else
                     rh.registraUsuarioTutor(usuario);
-                }
                 return "pantallainicial";
             } catch (Exception e) {
-                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correo inválido", null);
+                /* Le dejamos la validación del correo a la expresión regular 
+                   de la base de datos. */
+                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                        "Correo inválido", null);
                 faceContext.addMessage(null, message);
                 return "registro";
             }
         }
-        message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contraseñas no coinciden", null);
+        /* Si las contraseñas no existen, mostramos un mensaje de error. */
+        message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                "Las contraseñas no coinciden", null);
         faceContext.addMessage(null, message);
         return "registro";
     }
     
+    /* Método auxiliar que valida que tanto el nombre como los apellidos estén
+       formados únicamente de letras. */
     private boolean validaNombre() {
-        return sonLetras(nombre) && sonLetras(apellidop) && sonLetras(apellidom); 
+        return sonLetras(nombre) && sonLetras(apellidop) 
+                && sonLetras(apellidom); 
     }
     
+    /* Método auxiliar que verifica que una cadena esté formada de letras. */
     private boolean sonLetras(String cadena) {
+        /* Quitamos espacios en blanco, pues deben ser aceptados. */
         cadena = cadena.replace(" ", "");
         for (int i = 0; i < cadena.length(); i++) {
             char c = cadena.charAt(i);
@@ -145,10 +124,7 @@ public class AltaUsuario {
         return true;
     }
 
-    /**
-     * MÉTODOS DE MODIFICADORES Y DE ACCESO PARA COMUNICARNOS CON LA
-     * VISTA
-     */
+    /* MÉTODOS MODIFICADORES Y DE ACCESO. */
     public int getId() {
         return id;
     }
@@ -205,14 +181,6 @@ public class AltaUsuario {
         this.apellidom = apellidom;
     }
 
-    public boolean isEsAlumno() {
-        return esAlumno;
-    }
-
-    public void setEsAlumno(boolean esAlumno) {
-        this.esAlumno = esAlumno;
-    }
-
     public boolean isEsTutor() {
         return esTutor;
     }
@@ -220,5 +188,4 @@ public class AltaUsuario {
     public void setEsTutor(boolean esTutor) {
         this.esTutor = esTutor;
     }
-
 }

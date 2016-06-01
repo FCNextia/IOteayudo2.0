@@ -10,7 +10,7 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm;
 CREATE TABLE usuario (
 	id_usuario serial PRIMARY KEY, -- Cambio el tipo por uno serial, el tipo se encarga de generar la secuencia de forma automática
 	correo text UNIQUE NOT NULL check(correo SIMILAR TO '[0-9A-Za-z -_.áéíóúñü]+@%.%'),
-	nombre_usuario text NOT NULL check(nombre_usuario SIMILAR TO '[A-Za-z\s]+'),
+	nombre_usuario text NOT NULL check(nombre_usuario SIMILAR TO '[A-Za-záéíóúñü\s]+'),
 	app text NOT NULL CHECK(app SIMILAR TO '[A-Za-záéíóúñü\s]+'),
 	apm text NOT NULL CHECK(apm SIMILAR TO '[A-Za-záéíóúñü\s]+'),
 	contrasenia varchar(15) NOT NULL,
