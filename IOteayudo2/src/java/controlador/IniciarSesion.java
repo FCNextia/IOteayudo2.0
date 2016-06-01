@@ -24,7 +24,7 @@ public class IniciarSesion {
     /* Permite el envío de mensajes entre el bean y la vista. */
     private FacesMessage message; // Permite el envio de mensajes entre el bean y la vista
     /* Correo del usuario a ingresar en el sistema. */
-    private String correo;
+    private static String correo;
     /* Constraseña del usuario a ingresar en el sistema. */
     private String contrasenia;
     /* Para manejar los atributos de la sesión. */
