@@ -1,72 +1,81 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import logica.IniciarSesionHelper;
 import modelo.Usuario;
 
 /**
- *
- * @author yosh
+ * Clase encargada de iniciar sesión en el sistema.
  */
 @ManagedBean
 @RequestScoped
 public class IniciarSesion {
 
+    /* Lógica para conectarnos con la base de datos. */
     private final IniciarSesionHelper helper;
+    /* Para manejar los atributos de la sesión. */
     private final HttpSession session;
-    private final FacesContext faceContext; // Obtiene información de la aplicación
+    /* Obtiene información de la aplicación. */
+    private final FacesContext faceContext;
+    /* Permite el envío de mensajes entre el bean y la vista. */
     private FacesMessage message; // Permite el envio de mensajes entre el bean y la vista
-    private static String correo;
-    private String nombre;
-    private String nombreYApp;
+    /* Correo del usuario a ingresar en el sistema. */
+    private String correo;
+    /* Constraseña del usuario a ingresar en el sistema. */
     private String contrasenia;
-    private int calificacion;
-    private String acercaDe;
+    /* Para manejar los atributos de la sesión. */
     private final HttpServletRequest httpServletRequest;
-    public static int idUsuario;
 
+    /**
+     * Constructor por omisión. Inicializa los atributos en un estado válido.
+     */
     public IniciarSesion() {
         faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
+        httpServletRequest = 
+                (HttpServletRequest)faceContext.getExternalContext().getRequest();
         session = httpServletRequest.getSession(true);
         helper = new IniciarSesionHelper();
     }
 
+    /**
+     * Método encargado de iniciar la sesión.
+     * @return Dirección de la página de perfil del usuario.
+     */
     public String iniciarSesion() {
-        calificacion = 0;
         Usuario usuario = helper.getLoginPorCorreo(getCorreo());
+        /* Verificamos que el usuario existan. */
         if (usuario != null) {
+            /* Verificamos que la contraseña coincida. */
             if (getContrasenia().equals(usuario.getContrasenia())) {
                 session.setAttribute("sessionUsuario", correo);
                 session.setAttribute("idUsuario", usuario.getIdUsuario());
-                String nombreYApp = usuario.getNombreUsuario() + " " + usuario.getApp();
+                String nombreYApp = usuario.getNombreUsuario() + " " 
+                        + usuario.getApp();
                 session.setAttribute("nombreYApp", nombreYApp);
-                String nombreC = usuario.getNombreUsuario() + " " +  usuario.getApp() + " " + usuario.getApm();
+                String nombreC = usuario.getNombreUsuario() + " " 
+                        +  usuario.getApp() + " " + usuario.getApm();
                 session.setAttribute("nombre", nombreC);
                 session.setAttribute("calificacion", usuario.getCalificacion());
                 session.setAttribute("acercade", usuario.getAcercaDe());
-                if (usuario.getAlumno() != null)
+                if (usuario.getAlumno() != null) // si es alumno
                     return "perfilalumno";
-                if (usuario.getTutor() != null)
+                if (usuario.getTutor() != null) // si es tutor
                     return "perfiltutor";
             } else {
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contraseña incorrecto", null);
+                /* En caso de que la contraseña no coincida. */
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                        "Contraseña incorrecta", null);
                 faceContext.addMessage(null, message);
                 return "iniciosesion";
             }
         }
-        message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no registrado.", null);
+        /* En caso de que el usuario no exista. */
+        message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                "Usuario no registrado.", null);
         faceContext.addMessage(null, message);
         return "iniciosesion";
     }
@@ -90,36 +99,16 @@ public class IniciarSesion {
     public String getNombre() {
         return httpServletRequest.getSession().getAttribute("nombre").toString();
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
     
     public String getNombreYApp(){
         return httpServletRequest.getSession().getAttribute("nombreYApp").toString();
-    }
-    
-    public void setNombreYApp(String nombreYApp){
-        this.nombreYApp = nombreYApp;
     }
 
     public int getCalificacion() {
         return Integer.parseInt(httpServletRequest.getSession().getAttribute("calificacion").toString());
     }
 
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
-    }    
-    
-    public int getIDUsuario() {
-        return idUsuario;
-    }
-
     public String getAcercaDe() {
         return httpServletRequest.getSession().getAttribute("acercade").toString();
-    }
-
-    public void setAcercaDe(String acercaDe) {
-        this.acercaDe = acercaDe;
     }
 }
