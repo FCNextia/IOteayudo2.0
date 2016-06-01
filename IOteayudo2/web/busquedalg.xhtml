@@ -63,14 +63,23 @@
           <p><h:messages infoStyle="color: blue;list-style:none;"/></p>
           <h:form>
             <div class="input-group">
-              
-              <h:inputText pt:placeholder="Busca tutor por la materia que quieres reforzar" 
-                           value="#{buscarTutor.materia}" label="Buscar" class="form-control"/>
-              <c:set var="materia" value="#{buscarTutor.materia}"/>
-              <span class="input-group-btn">
+              <h:selectOneMenu value="#{buscarTutor.materia}" label="Buscar" class="form-control">
+                                  <f:selectItem itemValue="Matemáticas"/>
+                                  <f:selectItem itemValue="Física" />
+                                  <f:selectItem itemValue="Química" />
+                                  <f:selectItem itemValue="Biología" />
+                                  <f:selectItem itemValue="Informática" />
+                                  <f:selectItem itemValue="Historia"/>
+                                  <f:selectItem itemValue="Geografía"/>
+                                  <f:selectItem itemValue="Literatura"/>
+                                  <f:selectItem itemValue="Derecho"/>
+                              </h:selectOneMenu>
+                          
+                   <span class="input-group-btn">
                 <h:commandButton action="#{buscarTutor.encontrarTutor()}" value="Buscar" class="btn btn-default"/>
               </span>
-            </div>
+                  
+              </div> 
           <h:dataTable value="#{buscarTutor.tutores}" var="tutor" class="table">
             <h:column>
               <h:link value="#{tutor.nombreUsuario}" outcome="tutor">

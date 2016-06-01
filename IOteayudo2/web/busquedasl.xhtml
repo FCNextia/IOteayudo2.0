@@ -50,13 +50,25 @@
           
           <h1>Buscar Tutor</h1>
           <h:form>
-            <div class="input-group">
-              
-              <h:inputText value="#{buscarTutor.materia}" label="Buscar" class="form-control"/>
-              <span class="input-group-btn">
+              <div class="input-group">
+              <h:selectOneMenu value="#{buscarTutor.materia}" label="Buscar" class="form-control">
+                                  <f:selectItem itemValue="Matemáticas"/>
+                                  <f:selectItem itemValue="Física" />
+                                  <f:selectItem itemValue="Química" />
+                                  <f:selectItem itemValue="Biología" />
+                                  <f:selectItem itemValue="Informática" />
+                                  <f:selectItem itemValue="Historia"/>
+                                  <f:selectItem itemValue="Geografía"/>
+                                  <f:selectItem itemValue="Literatura"/>
+                                  <f:selectItem itemValue="Derecho"/>
+                              </h:selectOneMenu>
+                          
+                   <span class="input-group-btn">
                 <h:commandButton action="#{buscarTutor.encontrarTutor()}" value="Buscar" class="btn btn-default"/>
               </span>
-            </div>
+                  
+              </div>  
+              <br/>
           </h:form>
           <h:dataTable value="#{buscarTutor.tutores}" var="tutor" class="table">
             <h:column>
