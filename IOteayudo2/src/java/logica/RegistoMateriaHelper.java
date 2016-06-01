@@ -4,7 +4,6 @@ import modelo.Materia;
 import modelo.Tutor;
 import modelo.TutorMateria;
 import modelo.TutorMateriaId;
-import modelo.Usuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,6 +27,9 @@ public class RegistoMateriaHelper {
     
     /**
      * Método que consturye un TutorMateriaId.
+     * @param m Materia a agregar.
+     * @param id Id del usuario.
+     * @return Objeto con el id del tutor y la materia.
      */
     public TutorMateriaId construyeTMI(Materia m, int id) {
         TutorMateriaId tmi = new TutorMateriaId();
@@ -38,6 +40,10 @@ public class RegistoMateriaHelper {
     
     /**
      * Método que construye un TutorMateria.
+     * @param tmi Objeto para hacer el mapeo.
+     * @param m Materia a agregar.
+     * @param t Tutor a agregar.
+     * @return TutorMateria Objeto para hacer persist.
      */
     public TutorMateria construyeTM(TutorMateriaId tmi, Materia m, Tutor t) {
         TutorMateria tm = new TutorMateria();
@@ -49,11 +55,13 @@ public class RegistoMateriaHelper {
     
     /**
      * Método encargado de registrar una materia.
-     * @param materia La materia a registrar
+     * @param idMateria Id de la materia a registrar.
+     * @param idTutor Id del tutor que dará la materia.
      * @throws TransactionException Se lanza la excepción en caso de un error
      * durante la transacción.
      */
-    public void registraMateria(int idMateria, int idTutor) throws TransactionException {
+    public void registraMateria(int idMateria, int idTutor) 
+            throws TransactionException {
         Transaction tx = session.beginTransaction();
         Query p = session.getNamedQuery("BuscaMateriaPorID").setInteger("idMateria", idMateria);
         Materia m = (Materia)p.uniqueResult();

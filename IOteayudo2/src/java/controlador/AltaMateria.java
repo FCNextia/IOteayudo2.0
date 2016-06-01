@@ -5,8 +5,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import logica.RegistoMateriaHelper;
-import modelo.Materia;
-import org.hibernate.Query;
 import javax.servlet.http.HttpServletRequest;
 
 /**
