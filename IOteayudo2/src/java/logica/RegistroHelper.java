@@ -32,13 +32,16 @@ public class RegistroHelper {
      * @throws TransactionException Se lanza la excepción en caso de
      * un error durante la transacción.
      */
-    public void registraUsuarioAlumno(Usuario usuario) 
-            throws TransactionException {
+    public void registraUsuarioAlumno(Usuario usuario)  {
         Transaction tx = session.beginTransaction();
+        try {
         Alumno alumno = new Alumno(usuario, new Date(94,10,10));
         session.persist(usuario);
         session.persist(alumno);
         tx.commit();
+        } catch (TransactionException e) {
+            tx.rollback();
+        }
     }
 
     /**
@@ -47,12 +50,15 @@ public class RegistroHelper {
      * @throws TransactionException Lanza la excepción en caso de un
      * error durante la transacción.
      */
-    public void registraUsuarioTutor(Usuario usuario) 
-            throws TransactionException {
+    public void registraUsuarioTutor(Usuario usuario) {
         Transaction tx = session.beginTransaction();
-        Tutor tutor = new Tutor(usuario);
-        session.persist(usuario);
-        session.persist(tutor);
-        tx.commit();
+        try {
+            Tutor tutor = new Tutor(usuario);
+            session.persist(usuario);
+            session.persist(tutor);
+            tx.commit();
+        } catch (TransactionException e) {
+            tx.rollback();
+        }
     }
 }

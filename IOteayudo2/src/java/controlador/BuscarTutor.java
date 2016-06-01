@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.util.List;
-
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-
 import logica.BuscarTutorHelper;
 import modelo.Usuario;
 
 /**
- *
- * @author rtaboada
+ * Clase encargada de realizar las búsquedas del usuario.
  */
 @ManagedBean
 @ApplicationScoped

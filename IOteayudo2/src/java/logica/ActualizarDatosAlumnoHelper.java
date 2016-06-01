@@ -5,6 +5,7 @@ import modelo.Alumno;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import modelo.Usuario;
+import org.hibernate.Transaction;
 
 /**
  * Clase que permite actualizar los datos del alumno.
@@ -12,7 +13,7 @@ import modelo.Usuario;
 public class ActualizarDatosAlumnoHelper {
 
     /* Sesión */
-    private Session session;
+    private final Session session;
 
     /**
      * Constructor que simplemente obtiene la sesión actual.
@@ -36,7 +37,7 @@ public class ActualizarDatosAlumnoHelper {
     public int actualizaDatos(String correo, String contrasenia, String nombre, 
             String ap, String am, long cel, String ad) {
         try {
-            session.beginTransaction();
+            Transaction tx = session.beginTransaction();
             Query p = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", correo);
             Usuario u = (Usuario)p.uniqueResult();
             u.setCorreo(correo);
@@ -52,7 +53,7 @@ public class ActualizarDatosAlumnoHelper {
             if (!ad.isEmpty())
                 u.setAcercaDe(ad);
             session.persist(u);
-            session.getTransaction().commit();
+            tx.commit();
             return u.getIdUsuario();
         } catch (Exception e) {
             return -1;
@@ -65,12 +66,11 @@ public class ActualizarDatosAlumnoHelper {
      * @param fecha Fecha del alumno.
      */
     public void actualizaDatosAlumno(int id, Date fecha) {
-        session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         Query p = session.getNamedQuery("BuscaAlumnoPorID").setInteger("idUsuario", id);
         Alumno a = (Alumno)p.uniqueResult();
         a.setFecNac(fecha);
         session.persist(a);
-        session.getTransaction().commit();
+        tx.commit();
     }
 }
