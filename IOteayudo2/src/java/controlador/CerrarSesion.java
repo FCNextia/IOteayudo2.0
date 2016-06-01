@@ -6,35 +6,46 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import logica.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  * Caso de uso para cerrar sesión.
- * @author Manuel Soto Romero
  */
 @ManagedBean
 @RequestScoped
 public class CerrarSesion {
     
+    /* Correo del usuario actual. */
     private String correo;
+    /* Id del usuario actual. */
     private int id;
+    /* Para manejar las sesiones. */
     private final HttpServletRequest httpServletRequest;
+    /* Obtiene información de la aplicación. */
     private final FacesContext faceContext;
+    /* Para manejar mensajes. */
     private FacesMessage message;
+    /* Para manejar las sesiones. */
     private final HttpSession session;
     
+    /**
+     * Constructor por omisión. Inicializa los atributos en un estado válido.
+     */
     public CerrarSesion() {
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
         session = httpServletRequest.getSession(true);
+        /* Asigna el valor de los atributos id y correo. */
         if (httpServletRequest.getSession().getAttribute("sessionUsuario") != null) {
             correo = httpServletRequest.getSession().getAttribute("sessionUsuario").toString();
             id = Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString());
         }
     }
     
+    /**
+     * Método encargado de cerrar sesión. Elimina todos los atributos agregados
+     * a la sesión actual.
+     * @return Dirección a la pantalla inicial.
+     */
     public String cerrarSession() {
         session.removeAttribute("sessionUsuario");
         session.removeAttribute("idUsuario");
@@ -45,6 +56,8 @@ public class CerrarSesion {
         session.invalidate();
         return "pantallainicial";
     }
+    
+    /* MÉTODOS DE ACCESO Y MODIFICADORES */
 
     public String getCorreo() {
         return correo;
