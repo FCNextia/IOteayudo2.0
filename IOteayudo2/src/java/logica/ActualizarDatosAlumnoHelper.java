@@ -8,7 +8,6 @@ import modelo.Usuario;
 
 /**
  * Clase que permite actualizar los datos del alumno.
- * @author Manuel Soto Romero
  */
 public class ActualizarDatosAlumnoHelper {
 
@@ -41,12 +40,17 @@ public class ActualizarDatosAlumnoHelper {
             Query p = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", correo);
             Usuario u = (Usuario)p.uniqueResult();
             u.setCorreo(correo);
-            u.setContrasenia(contrasenia);
-            u.setNombreUsuario(nombre);
-            u.setApp(ap);
-            u.setApm(am);
+            if (!contrasenia.isEmpty())
+                u.setContrasenia(contrasenia);
+            if (!nombre.isEmpty())
+                u.setNombreUsuario(nombre);
+            if (!ap.isEmpty())
+                u.setApp(ap);
+            if (!am.isEmpty())
+                u.setApm(am);
             u.setTelefono(cel);
-            u.setAcercaDe(ad);
+            if (!ad.isEmpty())
+                u.setAcercaDe(ad);
             session.persist(u);
             session.getTransaction().commit();
             return u.getIdUsuario();
