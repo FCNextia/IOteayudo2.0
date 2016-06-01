@@ -68,10 +68,10 @@
                     <f:param name="id" value="#{solicitud.idAsesoria}"/>
               </h:link>
             </h:column>
-                  <h:column>
-                <f:facet name="header">Alumno</f:facet>
-                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
-                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+                 <h:column>
+                <f:facet name="header">Materia</f:facet>
+                <h:link value="#{solicitud.materia.nombreMateria}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud.materia.nombreMateria}"/>
               </h:link>
             </h:column>
             <h:column>
@@ -113,10 +113,10 @@
                     <f:param name="id" value="#{solicitud.idAsesoria}"/>
               </h:link>
             </h:column>
-                  <h:column>
-                <f:facet name="header">Alumno</f:facet>
-                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
-                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+                 <h:column>
+                <f:facet name="header">Materia</f:facet>
+                <h:link value="#{solicitud.materia.nombreMateria}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud.materia.nombreMateria}"/>
               </h:link>
             </h:column>
             <h:column>
@@ -149,7 +149,7 @@
           </h:dataTable>
           </h:form>
           
-          <h1>Asesorías terminadas</h1>
+          <h1>Asesorías pendientes de calificar</h1>
           <h:form>
               <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTerminadasAlumno(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
@@ -158,10 +158,10 @@
                     <f:param name="id" value="#{solicitud.idAsesoria}"/>
               </h:link>
             </h:column>
-                  <h:column>
-                <f:facet name="header">Alumno</f:facet>
-                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
-                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+                 <h:column>
+                <f:facet name="header">Materia</f:facet>
+                <h:link value="#{solicitud.materia.nombreMateria}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud.materia.nombreMateria}"/>
               </h:link>
             </h:column>
             <h:column>
@@ -190,7 +190,7 @@
             </h:column>
                    <h:column>
                       <f:facet name="header">Calificación</f:facet>
-                      <h:selectOneMenu value="#{calificarUsuario.calificacion}">
+                      <h:selectOneMenu value="#{calificarUsuario.calificacion}" class="form-control">
                           <f:selectItem itemValue="1" itemLabel="1"/>
                           <f:selectItem itemValue="2" itemLabel="2"/>
                           <f:selectItem itemValue="3" itemLabel="3"/>
@@ -204,6 +204,7 @@
           </h:dataTable>
           </h:form>
           
+          <h1>Asesorías terminadas</h1>
            <h:form>
                <h:dataTable value="#{mostrarHistorial.obtenSolicitudesCalificadasAlumno(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
@@ -212,10 +213,10 @@
                     <f:param name="id" value="#{solicitud.idAsesoria}"/>
               </h:link>
             </h:column>
-                  <h:column>
-                <f:facet name="header">Alumno</f:facet>
-                <h:link value="#{solicitud.alumno.usuario.nombreUsuario}" outcome="solicitud">
-                    <f:param name="nombre_alumno" value="#{solicitud.alumno.usuario.nombreUsuario}"/>
+                 <h:column>
+                <f:facet name="header">Materia</f:facet>
+                <h:link value="#{solicitud.materia.nombreMateria}" outcome="solicitud">
+                    <f:param name="nombre_alumno" value="#{solicitud.materia.nombreMateria}"/>
               </h:link>
             </h:column>
             <h:column>
@@ -253,6 +254,13 @@
         </div>
       </div>
     </div>
+    <div class="container">
+    <br></br>
+    <br></br>
+  <div class="col-md-12 text-center">
+    <p>IO te Ayudo 2016. Todos los derechos reservados.</p>
+  </div>
+</div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="resource/js/bootstrap.min.js"></script>

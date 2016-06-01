@@ -58,11 +58,10 @@
       <div class="row">
           <div class="col-md-10 col-md-offset-1">
               <h:form>
-                  <p>Por favor, llena los siguientes campos: </p>
                   <div class="row">
+                      <p>Selecciona una materia: </p>
                       <div class="col-md-6">
-                          <p>Selecciona una materia: </p>
-                          <p><h:selectOneListbox value="#{altaMateria.idMateria}">
+                          <p><h:selectOneMenu value="#{altaMateria.idMateria}" class="form-control">
                                   <f:selectItem itemValue="1" itemLabel="Matemáticas"/>
                                   <f:selectItem itemValue="2" itemLabel="Física" />
                                   <f:selectItem itemValue="3" itemLabel="Química" />
@@ -72,10 +71,12 @@
                                   <f:selectItem itemValue="7" itemLabel="Geografía"/>
                                   <f:selectItem itemValue="8" itemLabel="Literatura"/>
                                   <f:selectItem itemValue="9" itemLabel="Derecho"/>
-                              </h:selectOneListbox>
+                              </h:selectOneMenu>
                           </p>
-                          <br/>
-                          <h:commandButton value="Agregar Materia" action="#{altaMateria.daDeAltaMateria()}" class="btn btn-lg btn-primary btn-block"/>
+                          
+                      </div>
+                      <div class="col-md-6">
+                          <h:commandButton value="Agregar Materia" action="#{altaMateria.daDeAltaMateria()}" class="btn btn-primary btn-block"/>
                       </div>
                   </div>
               </h:form>
@@ -86,32 +87,30 @@
 <div class="row">   
     <div class="col-md-10 col-md-offset-1">
         <h:form>
-            <p>Por favor, llena los siguientes campos: </p>
             <div class="row">
                 <div class="col-md-6">
+                    <p><b>Por favor, llena los siguientes campos: </b></p>
                     <p><h:inputText pt:placeholder="Nombre: " value="#{actualizarDatosTutor.nombre}" class="form-control"/></p>
                     <p><h:inputText pt:placeholder="Apellido paterno: " value="#{actualizarDatosTutor.apellidop}" class="form-control"/></p>
                     <p><h:inputText pt:placeholder="Apellido materno: " value="#{actualizarDatosTutor.apellidom}" class="form-control"/></p>
                     <p><h:inputText pt:placeholder="Teléfono celular: " value="#{actualizarDatosTutor.celular}" class="form-control"/></p>
-                </div>
-                <div class="col-md-6">
                     <p><h:inputSecret pt:placeholder="Contraseña: " value="#{actualizarDatosTutor.contrasenia}" class="form-control"/></p>
                     <p><h:inputSecret pt:placeholder="Confirma tu contraseña: " value="#{actualizarDatosTutor.confirmacion}" class="form-control"/></p>
-                    <br></br>
+                </div>
+                <div class="col-md-6">
                     <p><b>Nivel de estudios</b></p>
-                    <h:selectOneMenu value="#{actualizarDatosTutor.escolaridad}">
+                    <h:selectOneMenu value="#{actualizarDatosTutor.escolaridad}" class="form-control">
                           <f:selectItem itemValue="Bachillerato" itemLabel="Bachillerato"/>
                           <f:selectItem itemValue="Licenciatura" itemLabel="Licenciatura"/>
                           <f:selectItem itemValue="Maestría" itemLabel="Maestría"/>
                           <f:selectItem itemValue="Doctorado" itemLabel="Doctorado"/>
                       </h:selectOneMenu>
                     <br></br>
-                    <br></br>
                     <p><h:inputTextarea pt:placeholder="Acerca de ti: " value="#{actualizarDatosTutor.acercaDeMi}" class="form-control"/></p>
                     <br/>
                     <h:commandButton value="Actualizar Datos" action="#{actualizarDatosTutor.actualizarDatos()}" class="btn btn-lg btn-primary btn-block"/>
                     <br></br>
-                    <h:commandButton value="Dar de baja" action="#{bajaUsuario.darBaja()}" class="btn btn-primary btn-lg btn-block "/>
+                    <h:commandButton value="Dar de baja" action="#{bajaUsuario.darBaja()}" class="btn btn-danger btn-lg btn-block "/>
                 </div>
             </div>
             
@@ -121,7 +120,14 @@
 </div>
 </div>       
 </div>            
-</div>            
+</div>  
+        <div class="container">
+    <br></br>
+    <br></br>
+  <div class="col-md-12 text-center">
+    <p>IO te Ayudo 2016. Todos los derechos reservados.</p>
+  </div>
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="resource/js/bootstrap.min.js"></script>
     </h:body>

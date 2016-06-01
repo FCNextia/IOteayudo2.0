@@ -61,16 +61,19 @@
       <h1>Configuración</h1>
       <p><h:messages infoStyle="color: blue;list-style:none;"/></p>
       <hr></hr>
-<div class="row">
+      <div class="row">
+          <div class="col-md-12">
+            <h3>Actualiza tus datos</h3>  
+          </div>
+      </div>
+        <div class="row">
+    <br></br>
     <h:form>
   <div class="col-md-6">
-    <h3>Actualiza tus datos</h3>
-    <br></br>
-    
         <h5>Cambiar nombre</h5>
         <h:inputText pt:placeholder="Nombre: " value="#{actualizarDatosAlumno.nombre}" class="form-control"/>
         <br></br>
-        <h5>Cambiar apellido</h5>
+        <h5>Cambiar apellidos</h5>
         <h:inputText pt:placeholder="Apellido paterno: " value="#{actualizarDatosAlumno.apellidop}" class="form-control"/>
         <br></br>
         <h:inputText pt:placeholder="Apellido materno: " value="#{actualizarDatosAlumno.apellidom}" class="form-control"/>
@@ -86,16 +89,19 @@
         <br></br>
 </div>
 <div class="col-md-6">
-  <h3>Actualiza tus datos</h3>
-  <br></br>
+    <h5>Añade tu fecha de nacimiento</h5>
   <h:inputText pt:placeholder="Fecha de nacimiento, ejemplo: 27-10-1993" value="#{actualizarDatosAlumno.fecha}" class="form-control">
       <f:convertDateTime pattern="d-M-yyyy" />
   </h:inputText>
   <br></br>
-  <h:inputText pt:placeholder="Teléfono celular: " value="#{actualizarDatosAlumno.celular}" class="form-control"/>
+  <h5>Añade un teléfono</h5>
+  <h:inputText pt:placeholder="Teléfono" value="#{actualizarDatosAlumno.celular}" class="form-control"/>
   <br></br>
   <h:inputTextarea pt:placeholder="Acerca de ti: " value="#{actualizarDatosAlumno.acercaDeMi}" class="form-control"/>
-        
+  <br/>
+  <h:commandButton value="Actualizar Datos" action="#{actualizarDatosAlumno.actualizarDatos()}" class="btn btn-primary btn-lg btn-block "/>
+    <br></br>
+<h:commandButton value="Dar de baja" action="#{bajaUsuario.darBaja()}" class="btn btn-danger btn-lg btn-block "/>
         
   
   
@@ -106,11 +112,9 @@
 </div>
         <div class="row">
             <div class="col-md-12">
-                <h:commandButton value="Actualizar Datos" action="#{actualizarDatosAlumno.actualizarDatos()}" class="btn btn-primary btn-lg btn-block "/>
-                <br></br>
-                <h:commandButton value="Dar de baja" action="#{bajaUsuario.darBaja()}" class="btn btn-primary btn-lg btn-block "/>
+                
             </div>
-            <br/>x
+            <br/>
         </div>
         
 </h:form>        

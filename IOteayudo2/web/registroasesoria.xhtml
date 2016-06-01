@@ -59,40 +59,36 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="well">
-      <h3 class="text-center">Solicitud</h3>
+        <h3 class="text-center"><b>Solicitud</b></h3>
       <p><h:messages infoStyle="color: blue;list-style:none;"/></p>
       <br></br>
     <h:form>
-        <p><center>Por favor, llena los siguientes datos, para solicitar "#{procesarSolicitudes.materia}" con #{procesarSolicitudes.nombreTutor}</center></p>
+        <h5><b><center>Por favor, llena los siguientes datos, para solicitar "#{procesarSolicitudes.materia}" con #{procesarSolicitudes.nombreTutor}</center></b></h5>
       <br></br>
       <h:inputText pt:placeholder="Fecha, ejemplo: 27-10-1993" id="date" value="#{procesarSolicitudes.fecha}"
-			size="20" required="true" >
+			size="20" required="true" class="form-control">
 					
 			<f:convertDateTime pattern="d-M-yyyy" />
 		  </h:inputText>
       <br></br>
       <h:inputTextarea pt:placeholder="Dirección: " value="#{procesarSolicitudes.direccion}" class="form-control"/>
-      <h:inputTextarea pt:placeholder="Más detalles, incluye aquí información adicional sobre la asesoría de ser necesario" value="#{procesarSolicitudes.detalles}"/>
+        <br/>
+      <h:inputTextarea pt:placeholder="Más detalles, incluye aquí información adicional sobre la asesoría de ser necesario" value="#{procesarSolicitudes.detalles}" class="form-control"/>
       <br></br>
-      <h:commandButton value="Enviar solicitud" action="#{procesarSolicitudes.enviaSolicitud()}" class="btn btn-primary btn-lg btn-block"/>
+      <h:commandButton value="Enviar solicitud" action="#{procesarSolicitudes.enviaSolicitud()}" class="btn btn-success btn-lg btn-block"/>
     </h:form>
-        <hr></hr>
-        <div class="row">
-          <div class="col-md-5 col-md-offset-1">
-        <h5>¿Ya eres miembro?</h5>
-            
-          </div>
-          <div class="col-md-6">
-        <button class="btn btn-default btn-block"><h:link value="Iniciar sesión" outcome="iniciosesion"/></button>
-            
-          </div>
-        </div>
 
     </div>
   </div>
 </div>
   </div>
-        
+   <div class="container">
+    <br></br>
+    <br></br>
+  <div class="col-md-12 text-center">
+    <p>IO te Ayudo 2016. Todos los derechos reservados.</p>
+  </div>
+</div>     
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="resource/js/bootstrap.min.js"></script>
     </h:body>
