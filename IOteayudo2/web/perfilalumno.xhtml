@@ -38,7 +38,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{cerrarSesion.correo}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><h:link value="Perfil" outcome="perfilalumno"/></li>
-            <li><h:link outcome="historialasesoriasalumno">Historial de asesorías <span class="badge">4</span></h:link></li>
+            <li><h:link outcome="historialasesoriasalumno">Historial de asesorías <span class="badge">#{mostrarHistorial.pendientesAlumno(cerrarSesion.id)}</span></h:link></li>
             <li><h:link value="Configuración" outcome="configuracionalumno"/></li>
             <li role="separator" class="divider"></li>
             <li><h:commandLink action="#{cerrarSesion.cerrarSession()}" value="Cerrar Sesion" /></li>
@@ -62,9 +62,7 @@
         <div class="col-md-6">
             <h1>#{iniciarSesion.nombre}</h1>
           <h4><b>Calificación: </b></h4>
-          <!-- switch(calificacion)
-          case: 1 -->
-              <c:if test="#{iniciarSesion.calificacion == 1}">
+          <c:if test="#{iniciarSesion.calificacion == 1}">
                   <span class="glyphicon yellow  glyphicon-star" style="color: yellow" aria-hidden="true"></span>
               </c:if>
               <c:if test="#{iniciarSesion.calificacion == 2}">

@@ -36,7 +36,7 @@
           <ul class="dropdown-menu">
             <li><h:link value="Perfil" outcome="perfiltutor"/></li>
             <li><h:link value="Configuración" outcome="configuraciontutor"/></li>
-            <li><h:link outcome="historialasesoriastutor">Solicitudes pendientes <span class="badge">4</span></h:link></li>
+            <li><h:link outcome="historialasesoriastutor">Solicitudes pendientes <span class="badge">#{mostrarHistorial.pendientesTutor(cerrarSesion.id)}</span></h:link></li>
             <li role="separator" class="divider"></li>
             <li><h:commandLink action="#{cerrarSesion.cerrarSession()}" value="Cerrar Sesion" /></li>
           </ul>

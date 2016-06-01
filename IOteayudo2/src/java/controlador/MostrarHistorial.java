@@ -46,6 +46,10 @@ public class MostrarHistorial {
         return mhh.getSolicitudesAlumno(idUsuario);
     }
     
+    public int pendientesAlumno(int idUsuario) {
+        return obtenSolicitudesAlumno(idUsuario).size();
+    }
+    
     public List<Asesoria> obtenSolicitudesAprobadasAlumno(int idUsuario) {
         return mhh.getSolicitudesAprobadasAlumno(idUsuario);
     }
@@ -63,6 +67,10 @@ public class MostrarHistorial {
      */
     public List<Asesoria> obtenSolicitudesTutor(int idUsuario) {
         return mhh.getSolicitudesTutor(idUsuario);
+    }
+    
+    public int pendientesTutor(int idUsuario) {
+        return obtenSolicitudesTutor(idUsuario).size();
     }
     
     public List<Asesoria> obtenSolicitudesAprobadasTutor(int idUsuario) {
