@@ -69,7 +69,11 @@ public class RegistoMateriaHelper {
         Query q = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", idTutor);
         Tutor t = (Tutor)q.uniqueResult();
         TutorMateria tm = construyeTM(tmi, m, t);
-        session.persist(tm);
+        Query r = session.getNamedQuery("BuscaTutorMateria").setInteger("idUsuario", idTutor);
+        r.setInteger("idMateria", idMateria);
+        TutorMateria tm2 = (TutorMateria)r.uniqueResult();
+        if (tm2 == null)
+            session.persist(tm);
         tx.commit();
     }
 }

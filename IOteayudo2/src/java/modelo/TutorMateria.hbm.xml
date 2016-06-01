@@ -20,4 +20,8 @@
             <column name="id_usuario" not-null="true" />
         </many-to-one>
     </class>
+    <sql-query name="BuscaTutorMateria">
+	<return alias="TutorMateria" class="modelo.TutorMateria"/>
+	<![CDATA[select * from public.tutor_materia where (id_usuario = :idUsuario and id_materia = :idMateria)]]>
+    </sql-query>
 </hibernate-mapping>
