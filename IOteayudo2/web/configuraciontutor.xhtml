@@ -110,7 +110,7 @@
                     <br/>
                     <h:commandButton value="Actualizar Datos" action="#{actualizarDatosTutor.actualizarDatos()}" class="btn btn-lg btn-primary btn-block"/>
                     <br></br>
-                    <h:commandButton value="Dar de baja" action="#{bajaUsuario.darBaja()}" class="btn btn-danger btn-lg btn-block "/>
+                    <a href="#borrar" class="btn btn-danger btn-lg btn-block" data-toggle="modal">Eliminar cuenta</a>
                 </div>
             </div>
             
@@ -128,6 +128,26 @@
     <p>IO te Ayudo 2016. Todos los derechos reservados.</p>
   </div>
 </div>
+        
+<!-- MODAL -->
+<div class="modal fade" id="borrar" tabindex="-1">
+  <div class="modal-lg modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+          <h2><b>¿Adiós por siempre?</b></h2>
+      </div>
+      <div class="modal-body text-center">
+        <h3>¿Seguro que quieres eliminar tu perfil del sistema? </h3>
+        <h4>Tus datos no podrán recuperarse jamás</h4>
+      </div>
+      <div class="modal-footer">
+		<button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Cancelar</button>
+		<h:commandButton value="Dar de baja" action="#{bajaUsuario.darBaja()}" class="btn btn-danger btn-lg"/>
+      </div>
+    </div>
+  </div>
+</div>   
+        
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="resource/js/bootstrap.min.js"></script>
     </h:body>
