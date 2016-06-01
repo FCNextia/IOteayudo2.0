@@ -61,7 +61,7 @@
         </div>
         <div class="col-md-6">
             <h1>#{iniciarSesion.nombre}</h1>
-          <h4>Calificación: 
+          <h4><b>Calificación: </b></h4>
           <!-- switch(calificacion)
           case: 1 -->
               <c:if test="#{iniciarSesion.calificacion == 1}">
@@ -90,9 +90,8 @@
                   <span class="glyphicon yellow  glyphicon-star" style="color: yellow" aria-hidden="true"></span>
               </c:if>
               <c:if test="#{iniciarSesion.calificacion == 0}">
-                  <p>No hay calificación</p>
+                  <p>No han calificado a #{iniciarSesion.nombreYApp} aún.</p>
               </c:if>
-          </h4>
         </div>
         <div class="col-md-3">
           <br></br>
@@ -110,6 +109,13 @@
   </div>
 </div>
 </div>  
+        <div class="container">
+    <br></br>
+    <br></br>
+  <div class="col-md-12 text-center">
+    <p>IO te Ayudo 2016. Todos los derechos reservados.</p>
+  </div>
+</div>
         
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="resource/js/bootstrap.min.js"></script>
