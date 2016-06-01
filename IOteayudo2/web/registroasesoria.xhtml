@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Solicitar asesoria</title>
+        <title>Solicitar asesoria | IOteAyudo</title>
         <link rel="stylesheet" href="resource/css/bootstrap.min.css"/>
     </h:head>
     <h:body>
@@ -23,20 +23,31 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
-          <img src="resource/img/IOteAyudo.png" class="img-responsive img" alt=""></img>
-      </a>
+        <h:link outcome="perfilalumno" class="navbar-brand">
+            <img src="resource/img/IOteAyudo.png" class="img-responsive img" alt=""></img>
+        </h:link>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
       <form class="navbar-form navbar-right" role="search">
-      <h:link value="Busca Tutor" outcome="busquedasl.xhtml" class="btn btn-primary"/>
+      <h:link value="Busca Tutor" outcome="busquedalg.xhtml" class="btn btn-primary"/>
       </form>
+      <h:form>
       <ul class="nav navbar-nav navbar-right">
-        <li><h:link value="Registro" outcome="registro"/></li>
-        <li><h:link value="Iniciar sesión" outcome="iniciosesion"/></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{cerrarSesion.correo}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><h:link value="Perfil" outcome="perfilalumno"/></li>
+            <li><h:link value="Historial de asesorías" outcome="historialasesoriasalumno"/></li>
+            <li><h:link value="Configuración" outcome="configuracionalumno"/></li>
+            <li role="separator" class="divider"></li>
+            <li><h:commandLink action="#{cerrarSesion.cerrarSession()}" value="Cerrar Sesion" /></li>
+          </ul>
+        </li>
       </ul>
+      </h:form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

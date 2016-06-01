@@ -6,51 +6,47 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
   <h:head>
-    <title>IOteayudo</title>
+    <title>Historial de asesorías | IOteAyudo</title>
     <link rel="stylesheet" href="resource/css/bootstrap.min.css"/>
   </h:head>
   <h:body>
     <br/>
     
     <div class="container">        
-      <nav class="navbar navbar-default">
-	<div class="container-fluid">
-	  <!-- Brand and toggle get grouped for better mobile display -->
-	  <div class="navbar-header">
-	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-	    </button>
-	    <a class="navbar-brand" href="#">
-              <img src="resource/img/IOteAyudo.png" class="img-responsive img" alt=""></img>
-	    </a>
-	  </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <h:link outcome="perfiltutor" class="navbar-brand">
+            <img src="resource/img/IOteAyudo.png" class="img-responsive img" alt=""></img>
+        </h:link>
+    </div>
 
-	  <!-- Collect the nav links, forms, and other content for toggling -->
-	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	    <form class="navbar-form navbar-right" role="search">
-	      <h:link value="Busca Tutor" outcome="busquedalg.xhtml" class="btn btn-primary"/>
-	    </form>
-            <h:form>  
-	    <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		  #{cerrarSesion.correo}<span class="caret"></span>
-		</a>
-		<ul class="dropdown-menu">
-		  <li><a href="#">Perfil</a></li>
-		  <li><a href="#">Configuración</a></li>
-		  <li role="separator" class="divider"></li>
-                  <li><h:commandLink action="#{cerrarSesion.cerrarSession()}" value="Cerrar Sesion"/></li>
-		</ul>
-              </li>
-	    </ul>
-            </h:form>
-	  </div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
-      </nav>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <h:form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{cerrarSesion.correo}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><h:link value="Perfil" outcome="perfiltutor"/></li>
+            <li><h:link value="Configuración" outcome="configuraciontutor"/></li>
+            <li><h:link value="Historial Asesorias" outcome="historialasesoriastutor"/></li>
+            <li role="separator" class="divider"></li>
+            <li><h:commandLink action="#{cerrarSesion.cerrarSession()}" value="Cerrar Sesion" /></li>
+          </ul>
+        </li>
+      </ul>
+      </h:form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
     </div> 
     <br/>
     
@@ -61,7 +57,7 @@
           
          <h1>Solicitudes pendientes</h1>
           <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -99,17 +95,17 @@
               </h:link>
             </h:column>
             <h:column>
-                <h:commandButton value="Aceptar" action="#{procesarSolicitudes.aceptaSolicitud(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+                <h:commandButton value="Aceptar" action="#{procesarSolicitudes.aceptaSolicitud(solicitud.idAsesoria)}" class="btn btn-success"/>             
             </h:column>
-                  <h:column>
-                      <h:commandButton value="Rechazar" action="#{procesarSolicitudes.rechazaSolicitud(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+            <h:column>
+                <h:commandButton value="Rechazar" action="#{procesarSolicitudes.rechazaSolicitud(solicitud.idAsesoria)}" class="btn btn-danger"/>             
             </h:column>
           </h:dataTable>
           </h:form>
          
          <h1>Asesorías aprobadas</h1>
           <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesAprobadasTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesAprobadasTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -146,18 +142,18 @@
                     <f:param name="detalles" value="#{solicitud.comentario}"/>
               </h:link>
             </h:column>
-                  <h:column>
-                      <h:commandButton value="Cancelar" action="#{procesarSolicitudes.cancelarAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+            <h:column>
+                <h:commandButton value="Cancelar" action="#{procesarSolicitudes.cancelarAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-danger"/>             
             </h:column>
             <h:column>
-                <h:commandButton value="Terminar asesoría" action="#{procesarSolicitudes.terminaAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+                <h:commandButton value="Terminar asesoría" action="#{procesarSolicitudes.terminaAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-primary"/>             
             </h:column>
           </h:dataTable>
           </h:form>
          
          <h1>Asesorías terminadas</h1>
           <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTerminadasTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTerminadasTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -205,13 +201,13 @@
                       </h:selectOneMenu>
                   </h:column>
                   <h:column>
-                      <h:commandButton value="Calificar" action="#{calificarUsuario.calificaAlumno(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+                      <h:commandButton value="Calificar" action="#{calificarUsuario.calificaAlumno(solicitud.idAsesoria)}" class="btn btn-warning"/>             
             </h:column>
           </h:dataTable>
           </h:form>
          
          <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesCalificadasTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesCalificadasTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
