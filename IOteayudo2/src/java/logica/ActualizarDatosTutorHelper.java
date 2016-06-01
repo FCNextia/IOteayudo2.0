@@ -39,12 +39,17 @@ public class ActualizarDatosTutorHelper {
             Query p = session.getNamedQuery("BuscaPorCorreo").setString("correoUsuario", correo);
             Usuario u = (Usuario)p.uniqueResult();
             u.setCorreo(correo);
-            u.setContrasenia(contrasenia);
-            u.setNombreUsuario(nombre);
-            u.setApp(ap);
-            u.setApm(am);
+            if (!contrasenia.isEmpty())
+                u.setContrasenia(contrasenia);
+            if (!nombre.isEmpty())
+                u.setNombreUsuario(nombre);
+            if (!ap.isEmpty())
+                u.setApp(ap);
+            if (!am.isEmpty())
+                u.setApm(am);
             u.setTelefono(cel);
-            u.setAcercaDe(ad);
+            if (!ad.isEmpty())
+                u.setAcercaDe(ad);
             session.persist(u);
             session.getTransaction().commit();
             return u.getIdUsuario();
@@ -63,7 +68,8 @@ public class ActualizarDatosTutorHelper {
         session.beginTransaction();
         Query p = session.getNamedQuery("BuscaTutorPorID").setInteger("idUsuario", id);
         Tutor t = (Tutor)p.uniqueResult();
-        t.setNivelEstudio(nivel_estudios);
+        if (!nivel_estudios.isEmpty())
+            t.setNivelEstudio(nivel_estudios);
         session.persist(t);
         session.getTransaction().commit();
     }

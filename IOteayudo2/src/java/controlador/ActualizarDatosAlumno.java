@@ -5,19 +5,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import logica.ActualizarDatosAlumnoHelper;
 
 /**
  * Controlador que permite agregar un usuario a la base de datos.
- * @author Manuel Soto Romero.
- * @version 1.0
  */
 @ManagedBean
 @RequestScoped
 public class ActualizarDatosAlumno {
-    
-    /* DATOS SUFICIENTES PARA DAR DE ALTA A UN USUARIO. */
     
     /* Correo electrónico del usuario. */
     private String correo;
@@ -31,24 +26,17 @@ public class ActualizarDatosAlumno {
     private String apellidop;
     /* Apellido materno del usario. */
     private String apellidom;
-    /* Día de nacimiento. */
-    private int dia;
-    /* Mes de nacimiento. */
-    private int mes;
-    /* Año de nacimiento. */
-    private int anio;
-    /* Celular del alumno. */
+    /* Fecha de nacimiento. */
+    private Date fecha;
     private String celular;
     /* Descripción del alumno. */
     private String acercaDeMi;
-    /* Obtiene información de las peticiones. */
-    private final HttpServletRequest httpServletRequest;
     /* Obtiene información de la aplicación. */
     private final FacesContext faceContext;
     /* Permite el envio de mensajes entre el bean y la vista. */
     private FacesMessage message;
     /* Helper que se encargará de acltualizar los datos. */
-    private ActualizarDatosAlumnoHelper adah;
+    private final ActualizarDatosAlumnoHelper adah;
     
     /**
      * Constructor por omisión.
@@ -56,9 +44,8 @@ public class ActualizarDatosAlumno {
      */
     public ActualizarDatosAlumno() {
         faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = 
-                (HttpServletRequest)faceContext.getExternalContext().getRequest();
         adah = new ActualizarDatosAlumnoHelper();
+        CerrarSesion cs = new CerrarSesion();
     }
     
     /**
@@ -66,20 +53,30 @@ public class ActualizarDatosAlumno {
      * @return Dirección de la vista perfil.
      */
     public String actualizarDatos() {
-        /* Convertirmos el teléfono a número. */
-        long cel = Long.parseLong(getCelular());
+        if (!getContrasenia().equals(getConfirmacion()) 
+                && !getContrasenia().isEmpty()) {
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                    "Las contraseñas no coinciden", null);
+            faceContext.addMessage(null, message);
+            return "configuracionalumno";
+        }
+        long cel = 0;
+        /* Convertimos el celular a número. */
+        if (!getCelular().isEmpty())
+            cel = Long.parseLong(getCelular());
+        if (getFecha() == null)
+            setFecha(new Date(94,10,10));
         /* Obtenemos la sesión actual */
         CerrarSesion cs = new CerrarSesion();
         String mail = cs.getCorreo();
         /* Obtenemos la fecha. */
-        Date fecha = new Date(getAnio(), getMes()-1, getDia());
         int id = adah.actualizaDatos(mail, getContrasenia(), getNombre(), 
                 getApellidop(),getApellidom(), cel, getAcercaDeMi());
         /* Actualizamos los datos del alumno. */
-        adah.actualizaDatosAlumno(id, fecha);
+        adah.actualizaDatosAlumno(id, getFecha());
         /* Redirigimos al perfil del alumno. */
         return "perfilalumno";
-    }
+    } 
     
     /* MÉTODOS DE MODIFICADORES Y DE ACCESO PARA COMUNICARNOS CON LA VISTA */
     public String getCorreo() {
@@ -146,27 +143,11 @@ public class ActualizarDatosAlumno {
         this.acercaDeMi = acercaDeMi;
     }
 
-    public int getDia() {
-        return dia;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
-
-    public int getMes() {
-        return mes;
-    }
-
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
-
-    public int getAnio() {
-        return anio;
-    }
-
-    public void setAnio(int anio) {
-        this.anio = anio;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

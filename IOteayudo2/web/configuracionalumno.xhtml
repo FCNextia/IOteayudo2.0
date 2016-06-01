@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Configuración</title>
@@ -58,6 +59,7 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="well">
       <h1>Configuración</h1>
+      <p><h:messages infoStyle="color: blue;list-style:none;"/></p>
       <hr></hr>
 <div class="row">
     <h:form>
@@ -86,13 +88,9 @@
 <div class="col-md-6">
   <h3>Actualiza tus datos</h3>
   <br></br>
-        <h5>Fecha de nacimiento</h5>
-  <br></br>
-  <h:inputText pt:placeholder="Día" value="#{actualizarDatosAlumno.dia}" class="form-control"/>
-  <br></br>
-  <h:inputText pt:placeholder="Mes" value="#{actualizarDatosAlumno.mes}" class="form-control"/>
-  <br></br>
-  <h:inputText pt:placeholder="Año" value="#{actualizarDatosAlumno.anio}" class="form-control"/>
+  <h:inputText pt:placeholder="Fecha de nacimiento, ejemplo: 27-10-1993" value="#{actualizarDatosAlumno.fecha}" class="form-control">
+      <f:convertDateTime pattern="d-M-yyyy" />
+  </h:inputText>
   <br></br>
   <h:inputText pt:placeholder="Teléfono celular: " value="#{actualizarDatosAlumno.celular}" class="form-control"/>
   <br></br>

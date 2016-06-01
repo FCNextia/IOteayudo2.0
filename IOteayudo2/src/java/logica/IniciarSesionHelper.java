@@ -3,7 +3,6 @@ package logica;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import modelo.Alumno;
 import modelo.Tutor;
 import modelo.Usuario;
@@ -11,11 +10,10 @@ import modelo.Usuario;
 /**
  * Realiza operaciones con la base de datos relacionadas con el inicio
  * de sesión.
- *
- * @author miguel
  */
 public class IniciarSesionHelper {
 
+    /* Para comunicarnos con la base. */
     private final Session session;
 
     /**
@@ -27,9 +25,7 @@ public class IniciarSesionHelper {
 
     /**
      * Busca usuarios por el correo.
-     *
      * @param correo El correo electrónico de la persona.
-     *
      * @return El usuario si existe.
      */
     public Usuario getLoginPorCorreo(String correo) {
@@ -42,9 +38,7 @@ public class IniciarSesionHelper {
 
     /**
      * Regresa verdadero si el usuario es un alumno.
-     *
      * @param id El id del usuario.
-     *
      * @return Verdadero si el usuario es un alumno, falso en caso
      * contrario.
      */
@@ -59,9 +53,7 @@ public class IniciarSesionHelper {
     /**
      * Regresa verdadero si el usuario es un tutor, falso en caso
      * contrario.
-     *
      * @param id El id del usuario.
-     *
      * @return Verdadero si el usuario es un alumno, falso en caso
      * contrario.
      */

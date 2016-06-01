@@ -6,33 +6,34 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import logica.BajaUsuarioHelper;
-import modelo.Usuario;
 import org.hibernate.SessionFactory;
 
 /**
  * Controlador que permite eliminar un usuario a la base de datos.
- * @author daniel
- * @version 1.0
  */
 @ManagedBean
 @RequestScoped
 public class BajaUsuario {
     
-    /* Obtiene información de las peticiones. */
-    private final HttpServletRequest httpServletRequest;
     /* Obtiene información de la aplicación. */
     private final FacesContext faceContext;
     /* Permite el envio de mensajes entre el bean y la vista. */
     private FacesMessage message;
-    private SessionFactory factory; 
+    /* Lógica para conectarse con la base de datos. */
     private final BajaUsuarioHelper bh;
     
+    /**
+     * Constructor por omisión. Inicializa los atributos a un estado válido.
+     */
     public BajaUsuario(){
         faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
         bh = new BajaUsuarioHelper();
     }
     
+    /**
+     * Método encargado de dar de baja un usuario de la base de datos.
+     * @return Dirección de la página inicial.
+     */
     public String darBaja(){
         IniciarSesion is = new IniciarSesion();
         String correo = is.getCorreo();
