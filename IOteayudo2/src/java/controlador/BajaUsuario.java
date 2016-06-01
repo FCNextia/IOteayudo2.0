@@ -27,16 +27,16 @@ public class BajaUsuario {
     private SessionFactory factory; 
     private final BajaUsuarioHelper bh;
     
-    public BajaUsuario(Usuario usuario){
+    public BajaUsuario(){
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest = (HttpServletRequest)faceContext.getExternalContext().getRequest();
         bh = new BajaUsuarioHelper();
-        usuario = usuario;
     }
     
-    public void darBaja(Usuario usuario){
-        bh.darBaja(usuario);
-    }
-    
-    
+    public String darBaja(){
+        IniciarSesion is = new IniciarSesion();
+        String correo = is.getCorreo();
+        bh.darBaja(correo);
+        return "pantallainicial";
+    }  
 }

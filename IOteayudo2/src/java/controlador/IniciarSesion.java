@@ -27,12 +27,14 @@ public class IniciarSesion {
     private final HttpSession session;
     private final FacesContext faceContext; // Obtiene información de la aplicación
     private FacesMessage message; // Permite el envio de mensajes entre el bean y la vista
-    private String correo;
+    private static String correo;
     private String nombre;
     private String nombreYApp;
     private String contrasenia;
     private int calificacion;
+    private String acercaDe;
     private final HttpServletRequest httpServletRequest;
+    public static int idUsuario;
 
     public IniciarSesion() {
         faceContext = FacesContext.getCurrentInstance();
@@ -53,22 +55,19 @@ public class IniciarSesion {
                 String nombreC = usuario.getNombreUsuario() + " " +  usuario.getApp() + " " + usuario.getApm();
                 session.setAttribute("nombre", nombreC);
                 session.setAttribute("calificacion", usuario.getCalificacion());
-                if (usuario.getAlumno() != null) {
+                session.setAttribute("acercade", usuario.getAcercaDe());
+                if (usuario.getAlumno() != null)
                     return "perfilalumno";
-                }
-                if (usuario.getTutor() != null) {
+                if (usuario.getTutor() != null)
                     return "perfiltutor";
-                } else {
-                    // Esto está raro, ¿hay algún caso donde no sea ni tutor ni alumno?
-                    message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no encontrado.", null);
-                    faceContext.addMessage(null, message);
-                }
             } else {
-                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Contraseña incorrecto", null);
                 faceContext.addMessage(null, message);
                 return "iniciosesion";
             }
         }
+        message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no registrado.", null);
+        faceContext.addMessage(null, message);
         return "iniciosesion";
     }
 
@@ -105,7 +104,7 @@ public class IniciarSesion {
     }
 
     public int getCalificacion() {
-        return 1;
+        return Integer.parseInt(httpServletRequest.getSession().getAttribute("calificacion").toString());
     }
 
     public void setCalificacion(int calificacion) {
@@ -113,6 +112,14 @@ public class IniciarSesion {
     }    
     
     public int getIDUsuario() {
-        return Integer.parseInt(httpServletRequest.getSession().getAttribute("idUsuario").toString());
+        return idUsuario;
+    }
+
+    public String getAcercaDe() {
+        return httpServletRequest.getSession().getAttribute("acercade").toString();
+    }
+
+    public void setAcercaDe(String acercaDe) {
+        this.acercaDe = acercaDe;
     }
 }
