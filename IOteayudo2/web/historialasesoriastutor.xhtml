@@ -61,7 +61,7 @@
           
          <h1>Solicitudes pendientes</h1>
           <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -99,17 +99,17 @@
               </h:link>
             </h:column>
             <h:column>
-                <h:commandButton value="Aceptar" action="#{procesarSolicitudes.aceptaSolicitud(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+                <h:commandButton value="Aceptar" action="#{procesarSolicitudes.aceptaSolicitud(solicitud.idAsesoria)}" class="btn btn-success"/>             
             </h:column>
-                  <h:column>
-                      <h:commandButton value="Rechazar" action="#{procesarSolicitudes.rechazaSolicitud(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+            <h:column>
+                <h:commandButton value="Rechazar" action="#{procesarSolicitudes.rechazaSolicitud(solicitud.idAsesoria)}" class="btn btn-danger"/>             
             </h:column>
           </h:dataTable>
           </h:form>
          
          <h1>Asesorías aprobadas</h1>
           <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesAprobadasTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesAprobadasTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -146,18 +146,18 @@
                     <f:param name="detalles" value="#{solicitud.comentario}"/>
               </h:link>
             </h:column>
-                  <h:column>
-                      <h:commandButton value="Cancelar" action="#{procesarSolicitudes.cancelarAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+            <h:column>
+                <h:commandButton value="Cancelar" action="#{procesarSolicitudes.cancelarAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-danger"/>             
             </h:column>
             <h:column>
-                <h:commandButton value="Terminar asesoría" action="#{procesarSolicitudes.terminaAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+                <h:commandButton value="Terminar asesoría" action="#{procesarSolicitudes.terminaAsesoriaTutor(solicitud.idAsesoria)}" class="btn btn-primary"/>             
             </h:column>
           </h:dataTable>
           </h:form>
          
          <h1>Asesorías terminadas</h1>
           <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTerminadasTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesTerminadasTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
@@ -205,13 +205,13 @@
                       </h:selectOneMenu>
                   </h:column>
                   <h:column>
-                      <h:commandButton value="Calificar" action="#{calificarUsuario.calificaAlumno(solicitud.idAsesoria)}" class="btn btn-danger"/>             
+                      <h:commandButton value="Calificar" action="#{calificarUsuario.calificaAlumno(solicitud.idAsesoria)}" class="btn btn-warning"/>             
             </h:column>
           </h:dataTable>
           </h:form>
          
          <h:form>
-              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesCalificadasTutor()}" var="solicitud" class="table">
+              <h:dataTable value="#{mostrarHistorial.obtenSolicitudesCalificadasTutor(cerrarSesion.id)}" var="solicitud" class="table">
             <h:column>
                 <f:facet name="header">Id solicitud</f:facet>
                 <h:link value="#{solicitud.idAsesoria}" outcome="solicitud">
