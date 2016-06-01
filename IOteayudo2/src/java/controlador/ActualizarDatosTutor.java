@@ -4,7 +4,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import logica.ActualizarDatosTutorHelper;
 
 /**
@@ -40,14 +39,12 @@ public class ActualizarDatosTutor {
     private String celular;
     /* Descripción del alumno. */
     private String acercaDeMi;
-    /* Obtiene información de las peticiones. */
-    private final HttpServletRequest httpServletRequest;
     /* Obtiene información de la aplicación. */
     private final FacesContext faceContext;
     /* Permite el envio de mensajes entre el bean y la vista. */
     private FacesMessage message;
     /* Se encarga de actualizar los datos. */
-    private ActualizarDatosTutorHelper adth;
+    private final ActualizarDatosTutorHelper adth;
     
     /**
      * Constructor por omisión.
@@ -55,8 +52,6 @@ public class ActualizarDatosTutor {
      */
     public ActualizarDatosTutor() {
         faceContext = FacesContext.getCurrentInstance();
-        httpServletRequest = 
-                (HttpServletRequest)faceContext.getExternalContext().getRequest();
         adth = new ActualizarDatosTutorHelper();
     }
     
@@ -65,8 +60,17 @@ public class ActualizarDatosTutor {
      * @return Dirección de la vista perfil.
      */
     public String actualizarDatos() {
-        /* Convertirmos el teléfono a número. */
-        long cel = Long.parseLong(getCelular());
+        if (!getContrasenia().equals(getConfirmacion()) 
+                && !getContrasenia().isEmpty()) {
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                    "Las contraseñas no coinciden", null);
+            faceContext.addMessage(null, message);
+            return "configuraciontutor";
+        }
+        long cel = 0;
+        /* Convertimos el celular a número. */
+        if (!getCelular().isEmpty())
+            cel = Long.parseLong(getCelular());
         /* Obtenemos la sesión actual. */
         CerrarSesion cs = new CerrarSesion();
         String mail = cs.getCorreo();
